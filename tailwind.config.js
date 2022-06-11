@@ -14,6 +14,7 @@ module.exports = {
           ...require("daisyui/src/colors/themes")["[data-theme=light]"],
           primary: "#5F5AB4",
           secondary: "#2F2E41",
+          "--btn-text-case": "capitalize",
         },
       },
       {
@@ -21,6 +22,7 @@ module.exports = {
           ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
           primary: "#5F5AB4",
           secondary: "#5C5B69",
+          "--btn-text-case": "capitalize",
         },
       },
     ],
