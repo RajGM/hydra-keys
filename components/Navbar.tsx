@@ -20,7 +20,7 @@ const Navbar = () => {
       </div>
       <div className="flex flex-row justify-end items-center gap-10">
         <Link href="/create">
-          <a className="text-black">Create your wallet</a>
+          <a className="text-black dark:text-white">Create your wallet</a>
         </Link>
         <ThemeToggle />
         <button className="btn btn-secondary px-6 text-lg font-normal">
