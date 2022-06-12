@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto min-h-screen">
       <Navbar />
       <Component {...pageProps} />
     </div>
