@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  background: #FFFFFF;
+}
+
+html[data-theme="dark"] {
+  background: #2F2E41;
+}
+
+body {
+  background: linear-gradient(rgba(72, 64, 205, 0.3), rgba(255, 255, 255, 0));
+}
