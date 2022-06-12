@@ -41,7 +41,7 @@ const ThemeToggle = () => {
           layout="fixed"
           width="20px"
           height="20px"
-          className={dark ? 'invisible' : ''}
+          className={`opacity-70 ${dark ? 'invisible' : ''}`}
         />
         <Image
           src="/Moon.png"
@@ -53,7 +53,7 @@ const ThemeToggle = () => {
       </div>
       <input
         type="checkbox"
-        className="toggle toggle-lg col-start-1 row-start-1 border-[#5F5AB4] bg-white checked:shadow-[var(--handleoffset)_0_0_2px_#9996CD_inset,_0_0_0_2px_#9996CD_inset] dark:border-[#31304A] dark:shadow-[calc(var(--handleoffset)_*_-1)_0_0_2px_#18163E_inset,_0_0_0_2px_#18163E_inset]"
+        className="toggle toggle-lg bg-clip-padding col-start-1 row-start-1 border-[#5F5AB4] bg-white checked:shadow-[var(--handleoffset)_0_0_4px_#9996CD_inset,_0_0_0_4px_#9996CD_inset] dark:border-[#31304A] dark:shadow-[calc(var(--handleoffset)_*_-1)_0_0_4px_#18163E_inset,_0_0_0_4px_#18163E_inset]"
         checked={!dark}
         onChange={toggleTheme}
       />
