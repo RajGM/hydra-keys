@@ -4,7 +4,7 @@ import ThemeToggle from './ThemeToggle'
 
 const Navbar = () => {
   return (
-    <div className="flex flex-row justify-between items-center my-4 dark:text-white">
+    <div className="flex flex-row justify-between items-center py-4 dark:text-white">
       <div className="flex flex-row justify-start items-center gap-6">
         <Image
           src="/logo.png"
