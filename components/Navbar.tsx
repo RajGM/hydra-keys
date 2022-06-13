@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import NavbarLink from './NavbarLink'
 import ThemeToggle from './ThemeToggle'
 
 const Navbar = () => {
@@ -19,9 +20,7 @@ const Navbar = () => {
         </h1>
       </div>
       <div className="flex flex-row justify-end items-center gap-10">
-        <Link href="/create">
-          <a className="text-black dark:text-white">Create your wallet</a>
-        </Link>
+        <NavbarLink href="/create" text="Create your wallet" />
         <ThemeToggle />
         <button className="btn btn-primary px-6 text-lg font-normal">
           Connect
