@@ -3,28 +3,54 @@ import Link from 'next/link'
 import NavbarLink from './NavbarLink'
 import ThemeToggle from './ThemeToggle'
 
-const Navbar = () => {
+type NavbarProps = {
+  drawerId: string
+}
+
+const Navbar = ({ drawerId }: NavbarProps) => {
   return (
-    <div className="flex flex-row justify-between items-center py-4">
-      <div className="flex flex-row justify-start items-center gap-6">
-        <Image
-          src="/logo.png"
-          width="90px"
-          height="90px"
-          className="grayscale dark:grayscale-0 dark:brightness-0 dark:invert"
-        />
-        <h1 className="text-xl font-bold text-[rgba(0,0,0,0.82)] dark:text-[#F9F8F8]">
-          <Link href="/">
-            Hydra Wallet
-          </Link>
-        </h1>
+    <div className="flex flex-row justify-between items-center p-6">
+      <div className="flex flex-row justify-start items-center gap-10">
+        <Link href="/">
+          <a className="leading-[0] relative w-[60px] h-[60px] sm:w-[90px] sm:h-[90px]">
+            <Image
+              src="/logo.png"
+              alt="Hydra Wallet logo"
+              layout="fill"
+              className="grayscale dark:brightness-0 dark:invert"
+            />
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <h1 className="hidden md:block text-lg font-bold dark:text-[#F9F8F8]">Hydra Wallet</h1>
+          </a>
+        </Link>
       </div>
-      <div className="flex flex-row justify-end items-center gap-10">
-        <NavbarLink href="/create" text="Create your wallet" />
+      <div className="flex flex-row justify-end items-center gap-4 sm:gap-8">
+        <div className="hidden sm:block">
+          <NavbarLink href="/create" text="Create your wallet" />
+        </div>
         <ThemeToggle />
-        <button className="btn btn-primary px-6 text-lg font-normal">
-          Connect
-        </button>
+        <button className="btn btn-primary hidden sm:block">Connect</button>
+        <label
+          htmlFor={drawerId}
+          className="btn btn-square btn-ghost drawer-button sm:hidden"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="dark:text-white inline-block w-7 h-7 stroke-current"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </label>
       </div>
     </div>
   )
