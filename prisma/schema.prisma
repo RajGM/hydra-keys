@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Wallet {
+  pubkey      Bytes        @db.Binary(32) @id @unique
+  authority   Bytes        @db.Binary(32)
+  memberships Membership[]
+}
+
+model Membership {
+  memberPubkey Bytes  @db.Binary(32)
+  walletPubkey Bytes  @db.Binary(32)
+  wallet       Wallet @relation(fields: [walletPubkey], references: [pubkey])
+
+  @@id([memberPubkey, walletPubkey])
+}
