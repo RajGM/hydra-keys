@@ -1,0 +1,19 @@
+.walletsList li {
+  @apply border-b-[1px] border-base-content;
+}
+
+.walletsList li:first-child {
+  @apply rounded-t-lg;
+}
+
+.walletsList li:last-child {
+  @apply border-none rounded-b-lg;
+}
+
+.walletsList li:hover {
+  @apply bg-[#201B48];
+}
+
+.walletsList li a {
+  @apply flex flex-row justify-between items-center p-6
+}
