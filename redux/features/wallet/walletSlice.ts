@@ -1,13 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Cluster } from '@solana/web3.js'
 import { RootState } from '../../store/store'
 
 export const walletSlice = createSlice({
   name: 'wallet',
   initialState: {
-    cluster: 'devnet'
+    cluster: 'devnet' as Cluster
   },
   reducers: {
-    changeCluster: (state, action) => {
+    changeCluster: (state, action: PayloadAction<Cluster>) => {
       state.cluster = action.payload
     }
   }
