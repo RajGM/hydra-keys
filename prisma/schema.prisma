@@ -11,15 +11,18 @@ datasource db {
 }
 
 model Wallet {
-  pubkey      String        @id @unique
-  authority   String        
+  pubkey      String       @id @unique
+  authority   String
+  acceptSPL   Boolean
   memberships Membership[]
+  totalShares Int
 }
 
 model Membership {
-  memberPubkey String  
-  walletPubkey String  
-  wallet       Wallet @relation(fields: [walletPubkey], references: [pubkey])
+  memberPubkey   String @id
+  memberShipType String
+  shareCount     Int
 
-  @@id([memberPubkey, walletPubkey])
+  wallet       Wallet @relation(references: [pubkey], fields: [walletPubkey])
+  walletPubkey String
 }
