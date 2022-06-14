@@ -15,5 +15,6 @@
 }
 
 .walletsList li a {
-  @apply flex flex-row justify-between items-center p-6
+  @apply flex flex-col justify-start items-start p-6;
+  @apply sm:flex-row sm:justify-between sm:items-center;
 }
