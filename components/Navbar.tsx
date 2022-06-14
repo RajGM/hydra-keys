@@ -9,7 +9,7 @@ type NavbarProps = {
 
 const Navbar = ({ drawerId }: NavbarProps) => {
   return (
-    <div className="container mx-auto flex flex-row justify-between items-center p-6">
+    <div className="container mx-auto flex flex-row justify-between items-center py-6">
       <div className="flex flex-row justify-start items-center gap-10">
         <Link href="/">
           <a className="leading-[0] relative w-[60px] h-[60px] sm:w-[90px] sm:h-[90px]">
@@ -44,9 +44,9 @@ const Navbar = ({ drawerId }: NavbarProps) => {
             className="dark:text-white inline-block w-7 h-7 stroke-current"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M4 6h16M4 12h16M4 18h16"
             ></path>
           </svg>
