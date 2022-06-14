@@ -11,6 +11,11 @@
 }
 
 .walletsList li:hover {
+  @apply bg-[#9996CD];
+}
+
+[data-theme="dark"]
+.walletsList li:hover {
   @apply bg-[#201B48];
 }
 
