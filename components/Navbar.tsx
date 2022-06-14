@@ -31,8 +31,9 @@ const Navbar = ({ drawerId }: NavbarProps) => {
         </Link>
       </div>
       <div className="flex flex-row justify-end items-center gap-4 sm:gap-8">
-        <div className="hidden sm:block">
-          <NavbarLink href="/create" text="Create your wallet" />
+        <div className="hidden sm:flex flex-row gap-6 justify-end items-center">
+          <NavbarLink href="/create" text="Create" />
+          <NavbarLink href="/manage" text="Manage" />
         </div>
         <ThemeToggle />
         <div className={styles.walletBtnParent}>

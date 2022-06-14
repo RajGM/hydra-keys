@@ -69,7 +69,8 @@ const Layout = ({ children }: LayoutProps) => {
                   </div>
                   <ul>
                     <li>
-                      <SidebarLink href="/create" text="Create your wallet" />
+                      <SidebarLink href="/create" text="Create" />
+                      <SidebarLink href="/manage" text="Manage" />
                     </li>
                   </ul>
                 </div>
