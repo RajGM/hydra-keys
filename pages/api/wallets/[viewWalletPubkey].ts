@@ -5,7 +5,9 @@ import { PrismaClient } from '@prisma/client';
 const prisma=new PrismaClient();
 
 type Data = {
+  found: boolean,
   pubkey: string,
+  authority:string
 }
 
 export default async function handler(
@@ -24,10 +26,11 @@ export default async function handler(
         const element = wallets[index];
         console.log(element.pubkey); //I can do this since wallet addresses must be unique and there will be no two wallets with the same address
         if(element.pubkey===viewWalletPubkey){
-            res.status(200).json({ pubkey: 'True'});
+            res.status(200).json({found:true, pubkey: element.pubkey, authority: element.authority});
+            return;
         }
     }
     
-    res.status(200).json({ pubkey: viewWalletPubkey.toString() });
+    res.status(200).json({found:false, pubkey: '',authority:''});
     
   }
