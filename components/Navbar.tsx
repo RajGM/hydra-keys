@@ -9,7 +9,7 @@ type NavbarProps = {
 
 const Navbar = ({ drawerId }: NavbarProps) => {
   return (
-    <div className="flex flex-row justify-between items-center p-6">
+    <div className="container mx-auto flex flex-row justify-between items-center p-6">
       <div className="flex flex-row justify-start items-center gap-10">
         <Link href="/">
           <a className="leading-[0] relative w-[60px] h-[60px] sm:w-[90px] sm:h-[90px]">
