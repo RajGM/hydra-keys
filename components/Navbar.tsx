@@ -35,7 +35,9 @@ const Navbar = ({ drawerId }: NavbarProps) => {
           <NavbarLink href="/create" text="Create your wallet" />
         </div>
         <ThemeToggle />
-        <WalletMultiButton className={styles.walletMultiBtn} />
+        <div className={styles.walletBtnParent}>
+          <WalletMultiButton />
+        </div>
         <label
           htmlFor={drawerId}
           className="btn btn-square btn-ghost drawer-button sm:hidden"

@@ -1,3 +1,3 @@
-.walletMultiBtn {
+.walletBtnParent button {
   @apply btn btn-primary hidden sm:inline-flex
 }
