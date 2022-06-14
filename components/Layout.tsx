@@ -46,7 +46,7 @@ const Layout = ({ children }: LayoutProps) => {
   )
 
   return (
-    <ConnectionProvider endpoint={clusterApiUrl(cluster as Cluster)}>
+    <ConnectionProvider endpoint={clusterApiUrl(cluster)}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <div className="min-h-screen">
