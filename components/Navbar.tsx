@@ -1,3 +1,4 @@
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import Image from 'next/image'
 import Link from 'next/link'
 import NavbarLink from './NavbarLink'
@@ -32,7 +33,7 @@ const Navbar = ({ drawerId }: NavbarProps) => {
           <NavbarLink href="/create" text="Create your wallet" />
         </div>
         <ThemeToggle />
-        <button className="btn btn-primary hidden sm:block">Connect</button>
+        <WalletMultiButton className="btn btn-primary hidden sm:block" />
         <label
           htmlFor={drawerId}
           className="btn btn-square btn-ghost drawer-button sm:hidden"
@@ -44,9 +45,9 @@ const Navbar = ({ drawerId }: NavbarProps) => {
             className="dark:text-white inline-block w-7 h-7 stroke-current"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M4 6h16M4 12h16M4 18h16"
             ></path>
           </svg>
