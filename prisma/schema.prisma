@@ -6,19 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Wallet {
-  pubkey      Bytes        @db.Binary(32) @id @unique
-  authority   Bytes        @db.Binary(32)
+  pubkey      String        @id @unique
+  authority   String        
   memberships Membership[]
 }
 
 model Membership {
-  memberPubkey Bytes  @db.Binary(32)
-  walletPubkey Bytes  @db.Binary(32)
+  memberPubkey String  
+  walletPubkey String  
   wallet       Wallet @relation(fields: [walletPubkey], references: [pubkey])
 
   @@id([memberPubkey, walletPubkey])
