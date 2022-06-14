@@ -64,7 +64,9 @@ const Layout = ({ children }: LayoutProps) => {
               <div className="drawer-side">
                 <label htmlFor="nav-drawer" className="drawer-overlay"></label>
                 <div className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                  <WalletMultiButton className={styles.walletMultiBtn} />
+                  <div className={styles.walletBtnParent}>
+                    <WalletMultiButton />
+                  </div>
                   <ul>
                     <li>
                       <SidebarLink href="/create" text="Create your wallet" />
