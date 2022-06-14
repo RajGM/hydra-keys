@@ -4,6 +4,8 @@ import Link from 'next/link'
 import NavbarLink from './NavbarLink'
 import ThemeToggle from './ThemeToggle'
 
+import styles from '../styles/Navbar.module.css'
+
 type NavbarProps = {
   drawerId: string
 }
@@ -33,7 +35,7 @@ const Navbar = ({ drawerId }: NavbarProps) => {
           <NavbarLink href="/create" text="Create your wallet" />
         </div>
         <ThemeToggle />
-        <WalletMultiButton className="btn btn-primary hidden sm:block" />
+        <WalletMultiButton className={styles.walletMultiBtn} />
         <label
           htmlFor={drawerId}
           className="btn btn-square btn-ghost drawer-button sm:hidden"
