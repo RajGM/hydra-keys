@@ -47,8 +47,8 @@ const Home: NextPage = () => {
             />
           </div>
         </div>
-        <div className="section3">
-          <h1>Membership Models</h1>
+        <div className={styles.section3}>
+          <h1 className="mb-16">Membership Models</h1>
           <img src="/NFT.png" className="NFT"></img>
           <div className="semi"></div>
           <div id="wallet">

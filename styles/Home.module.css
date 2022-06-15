@@ -12,3 +12,8 @@
 .heroButton {
   transform: rotate(-90deg);
 }
+
+.section3 {
+  position: relative;
+  margin-top: 5rem;
+}
