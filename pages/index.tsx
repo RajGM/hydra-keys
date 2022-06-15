@@ -1,22 +1,24 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import HomeBannerSvg from '../assets/svg/homeBanner'
 
 const Home: NextPage = () => {
   return (
-    //section3
-    <div className='section3'> 
-      <h1>Membership Models</h1>
-      <img src="/NFT.png" className="NFT"></img> 
-      <div className='semi'> 
-      </div> 
-        <div id="wallet"> 
-          <img src="/wallet.png" ></img> 
-        </div> 
-        <div id="grow"> 
-          <img src="/grow.png"></img> 
-        </div> 
-      </div>
+    <div>
+      <Head>
+        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="overflow-hidden py-5 ">
+        <div className="flex w-full h-screen max-h-[85vh]">
+          <div className="w-1/2">02</div>
+          <div className="w-1/2 flex justify-end items-center">
+            <HomeBannerSvg fill="#dddcde" width="100%" height="100%" />
+          </div>
+        </div>
+      </main>
+    </div>
   )
 }
 
