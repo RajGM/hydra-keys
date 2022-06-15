@@ -5,16 +5,20 @@ import { MembershipModel } from '@glasseaters/hydra-sdk';
 
 const prisma=new PrismaClient();
 
-export default function handler(    
-    req: NextApiRequest,
-    res: NextApiResponse) {
-    console.log("hello")
-    if (req.method !== 'POST') {
-      res.status(405).send({ message: 'Only POST requests allowed' });
+export default function handler(req, res) {
+  if (req.method === 'POST') {
+    console.log("post");
+    const body=req.body;
+    try{
+      console.log(body.a);
+    }
+    catch{
       return;
     }
-  
-    const body = JSON.parse(req.body);
-  
-    // the rest of your code
+    return;
+  } else {
+    res.status(200).json({found:false});
+    return;
   }
+
+}
