@@ -1,7 +1,0 @@
-.walletBtnParent > div {
-  @apply w-full;
-}
-
-.walletBtnParent button {
-  @apply btn btn-primary mb-4 w-full;
-}
