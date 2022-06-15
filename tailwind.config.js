@@ -16,6 +16,7 @@ module.exports = {
           primary: '#2F2E41',
           'primary-content': '#FFFFFF',
           '--btn-text-case': 'capitalize',
+          secondary: '#5F5AB4',
         },
       },
       {
@@ -24,6 +25,7 @@ module.exports = {
           primary: '#C27501',
           'primary-content': '#F1F1F1',
           '--btn-text-case': 'capitalize',
+          secondary: '#5F5AB4',
         },
       },
     ],

@@ -22,6 +22,14 @@ const Home: NextPage = () => {
               membership sets that can take part in fund distribution from a
               central wallet. It works with SOL and any SPL token.
             </p>
+            <div className="flex justify-start items-center gap-5">
+              <button className="btn btn-secondary px-6 text-lg font-normal">
+                Keep Exploring
+              </button>
+              <button className="btn btn-primary px-6 text-lg font-normal">
+                Get Started
+              </button>
+            </div>
           </div>
           <div className="w-1/2 flex justify-end items-center">
             <HomeBannerSvg
