@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+
 import CreateWalletForm from '../components/CreateWalletForm'
 
 const Create: NextPage = () => {
