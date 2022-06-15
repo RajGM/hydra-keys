@@ -1,4 +1,7 @@
+import { FanoutClient, MembershipModel } from '@glasseaters/hydra-sdk'
+import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react'
 import { FormikErrors, useFormik } from 'formik'
+import { useState } from 'react'
 
 interface FormValues {
   name: string
@@ -9,6 +12,18 @@ interface FormValues {
 }
 
 const CreateWalletForm = () => {
+  const [status, setStatus] = useState('')
+  const [msg, setMsg] = useState('')
+
+  type AlertType = 'hidden' | 'alert-info' | 'alert-success' | 'alert-error'
+
+  const alertType: Record<string, AlertType> = {
+    '': 'hidden',
+    info: 'alert-info',
+    success: 'alert-success',
+    error: 'alert-error',
+  }
+
   const initialValues = {
     name: '',
     shares: 0,
@@ -17,9 +32,42 @@ const CreateWalletForm = () => {
     pubKeySPL: '',
   }
 
+  const membershipModels: Record<string, MembershipModel> = {
+    ['Wallet membership']: MembershipModel.Wallet,
+    ['NFT membership']: MembershipModel.NFT,
+    ['Token membership']: MembershipModel.Token,
+  }
+
+  const { connection } = useConnection()
+  const wallet = useAnchorWallet()
+
   const onSubmit = (values: any) => {
-    console.log('submitted', values)
-    // add Hydra wallet creation logic here
+    if (!wallet) {
+      setStatus('error')
+      setMsg('Wallet not connected')
+      return
+    }
+
+    setStatus('info')
+    setMsg('Creating Hydra Wallet...')
+
+    const fanoutSdk = new FanoutClient(connection, wallet)
+
+    fanoutSdk
+      .initializeFanout({
+        name: values.name,
+        totalShares: values.shares,
+        membershipModel: membershipModels[values.model],
+        ...(values.acceptSPL ? { mint: values.pubKeySPL } : {}),
+      })
+      .then(() => {
+        setStatus('success')
+        setMsg('Successfully created wallet')
+      })
+      .catch((err) => {
+        setStatus('error')
+        setMsg(err.message)
+      })
   }
 
   const validate = (values: any) => {
@@ -55,8 +103,14 @@ const CreateWalletForm = () => {
   return (
     <form
       className="flex w-full flex-wrap gap-y-10 text-primary dark:text-white"
-      onSubmit={formik.handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault()
+        formik.handleSubmit()
+      }}
     >
+      <div className={`alert w-11/12 mx-auto sm:w-full ${alertType[status]}`}>
+        <span>{msg}</span>
+      </div>
       <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-10">
         <div className="form-control w-4/5">
           <label className="label">
@@ -127,9 +181,7 @@ const CreateWalletForm = () => {
 
           <label className="label">
             <span
-              className={
-                !formik.values.acceptSPL ? 'opacity-40' : undefined
-              }
+              className={!formik.values.acceptSPL ? 'opacity-40' : undefined}
             >
               Enter SPL token public key
             </span>
