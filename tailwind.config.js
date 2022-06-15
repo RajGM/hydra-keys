@@ -16,24 +16,16 @@ module.exports = {
     themes: [
       {
         light: {
-<<<<<<< HEAD
           ...require("daisyui/src/colors/themes")["[data-theme=light]"],
           primary: "#2F2E41",
           secondary: "#5F5AB4",
           "base-100": "#F0F0F0",
           "primary-content": "#FFFFFF",
           "--btn-text-case": "capitalize",
-=======
-          ...require('daisyui/src/colors/themes')['[data-theme=light]'],
-          primary: '#2F2E41',
-          'primary-content': '#FFFFFF',
-          '--btn-text-case': 'capitalize',
->>>>>>> 93c4af7 (added heading and para)
         },
       },
       {
         dark: {
-<<<<<<< HEAD
           ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
           primary: "#C27501",
           secondary: "#5F5AB4",
@@ -41,12 +33,6 @@ module.exports = {
           "primary-content": "#F1F1F1",
           "base-content": "#E6E6E6",
           "--btn-text-case": "capitalize",
-=======
-          ...require('daisyui/src/colors/themes')['[data-theme=dark]'],
-          primary: '#C27501',
-          'primary-content': '#F1F1F1',
-          '--btn-text-case': 'capitalize',
->>>>>>> 93c4af7 (added heading and para)
         },
       },
     ],
