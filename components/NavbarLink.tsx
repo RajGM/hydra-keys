@@ -14,7 +14,7 @@ const NavbarLink = ({ text, href }: NavbarLinkProps) => {
 
   return (
     <Link href={href}>
-      <a className={`${activeStyle} text-black dark:text-white`}>{text}</a>
+      <a className={`${activeStyle} border-b-[1px] pb-1 border-transparent text-black dark:text-white`}>{text}</a>
     </Link>
   )
 }
