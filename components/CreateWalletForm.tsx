@@ -1,11 +1,19 @@
-import { useFormik } from 'formik'
+import {FormikErrors, useFormik} from 'formik'
+
+interface FormValues {
+  name: string;
+  shares: number;
+  model: string,
+  acceptSPL: boolean,
+  pubKeySPL: string
+}
 
 const CreateWalletForm = () => {
   const initialValues = {
     name: '',
     shares: 0,
     model: 'Wallet membership',
-    acceptSPL: 0,
+    acceptSPL: false,
     pubKeySPL: '',
   }
 
@@ -14,20 +22,27 @@ const CreateWalletForm = () => {
   }
 
   const validate = (values: any) => {
-    let errors = {}
+    let errors: FormikErrors<FormValues> = {};
 
-    if(!values.name) {
-      // @ts-ignore
+    if (!values.name) {
       errors.name = 'This field is required'
     }
 
-
-    if(values.shares == 0) {
-      // @ts-ignore
+    if (!values.shares) {
       errors.shares = 'Enter a valid number of shares'
     }
 
+    if (values.acceptSPL && !values.pubKeySPL) {
+      errors.pubKeySPL = 'This field is required'
+    }
+
     return errors
+  }
+
+  const checkNumeric = (event: any) => {
+    if (event.key == '.') {
+      event.preventDefault()
+    }
   }
 
   const formik = useFormik({
@@ -35,7 +50,7 @@ const CreateWalletForm = () => {
     onSubmit,
     validate,
   })
-
+  console.log(formik.errors)
   return (
     <form
       className="flex w-full flex-wrap gap-y-10"
@@ -51,7 +66,7 @@ const CreateWalletForm = () => {
             id="name"
             placeholder="Enter a name for your wallet"
             className="input input-bordered w-full"
-            { ...formik.getFieldProps('name')}
+            {...formik.getFieldProps('name')}
           />
           <label>
             <span className="label-text-alt text-white text-sm">
@@ -59,7 +74,9 @@ const CreateWalletForm = () => {
             </span>
           </label>
 
-          {formik.errors.name && formik.touched.name ? <div className="text-red-500">{formik.errors.name}</div> : null}
+          {formik.errors.name && formik.touched.name ? (
+            <div className="text-red-500">{formik.errors.name}</div>
+          ) : null}
         </div>
 
         <div className="form-control w-4/5">
@@ -71,9 +88,12 @@ const CreateWalletForm = () => {
             id="shares"
             placeholder="Enter a number of shares"
             className="input input-bordered w-full"
-            { ...formik.getFieldProps('shares')}
+            onKeyPress={(event) => checkNumeric(event)}
+            {...formik.getFieldProps('shares')}
           />
-          {formik.errors.shares && formik.touched.shares ? <div className="text-red-500">{formik.errors.shares}</div> : null}
+          {formik.errors.shares && formik.touched.shares ? (
+            <div className="text-red-500">{formik.errors.shares}</div>
+          ) : null}
         </div>
       </div>
 
@@ -85,7 +105,7 @@ const CreateWalletForm = () => {
           <select
             id="model"
             className="select select-bordered w-full"
-            { ...formik.getFieldProps('model')}
+            {...formik.getFieldProps('model')}
           >
             <option>Wallet membership</option>
             <option>NFT membership</option>
@@ -99,21 +119,31 @@ const CreateWalletForm = () => {
               type="checkbox"
               id="acceptSPL"
               className="checkbox checkbox-primary"
-              { ...formik.getFieldProps('acceptSPL')}
+              {...formik.getFieldProps('acceptSPL')}
             />
             <span className="text-white">Accept SPL Tokens</span>
           </label>
 
           <label className="label">
-            <span className="text-white">Enter SPL token public key</span>
+            <span
+              className={`text-white ${
+                !formik.values.acceptSPL ? 'opacity-40' : null
+              }`}
+            >
+              Enter SPL token public key
+            </span>
           </label>
           <input
             type="text"
             id="pubKeySPL"
             placeholder="Enter a public key"
             className="input input-bordered w-full"
-            { ...formik.getFieldProps('pubKeySPL')}
+            disabled={!formik.values.acceptSPL}
+            {...formik.getFieldProps('pubKeySPL')}
           />
+          {formik.errors.pubKeySPL && formik.touched.pubKeySPL && formik.values.acceptSPL ? (
+              <div className="text-red-500">{formik.errors.pubKeySPL}</div>
+          ) : null}
         </div>
       </div>
 
