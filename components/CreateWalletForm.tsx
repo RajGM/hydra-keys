@@ -54,13 +54,13 @@ const CreateWalletForm = () => {
 
   return (
     <form
-      className="flex w-full flex-wrap gap-y-10"
+      className="flex w-full flex-wrap gap-y-10 text-primary dark:text-white"
       onSubmit={formik.handleSubmit}
     >
       <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-10">
         <div className="form-control w-4/5">
           <label className="label">
-            <span className="text-white">Hydra Wallet name</span>
+            <span>Hydra Wallet name</span>
           </label>
           <input
             type="text"
@@ -70,7 +70,7 @@ const CreateWalletForm = () => {
             {...formik.getFieldProps('name')}
           />
           <label>
-            <span className="label-text-alt text-white text-sm">
+            <span className="label-text-alt text-sm">
               * choose a unique name for your wallet
             </span>
           </label>
@@ -82,7 +82,7 @@ const CreateWalletForm = () => {
 
         <div className="form-control w-4/5">
           <label className="label">
-            <span className="text-white">Total Shares</span>
+            <span>Total Shares</span>
           </label>
           <input
             type="number"
@@ -101,7 +101,7 @@ const CreateWalletForm = () => {
       <div className="w-full md:w-1/2 flex flex-col items-center md:items-end gap-10">
         <div className="form-control w-4/5">
           <label className="label">
-            <span className="text-white">Pick a membership Model</span>
+            <span>Pick a membership Model</span>
           </label>
           <select
             id="model"
@@ -122,14 +122,14 @@ const CreateWalletForm = () => {
               className="checkbox checkbox-primary"
               {...formik.getFieldProps('acceptSPL')}
             />
-            <span className="text-white">Accept SPL Tokens</span>
+            <span>Accept SPL Tokens</span>
           </label>
 
           <label className="label">
             <span
-              className={`text-white ${
-                !formik.values.acceptSPL ? 'opacity-40' : null
-              }`}
+              className={
+                !formik.values.acceptSPL ? 'opacity-40' : undefined
+              }
             >
               Enter SPL token public key
             </span>
