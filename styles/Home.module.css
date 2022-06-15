@@ -8,3 +8,7 @@
   fill: #211f31;
   color: #211f31;
 }
+
+.heroButton {
+  transform: rotate(-90deg);
+}
