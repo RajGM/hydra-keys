@@ -14,11 +14,11 @@ const Home: NextPage = () => {
 
       <main className="overflow-hidden py-5 ">
         <div className="flex w-full h-screen max-h-[85vh]">
-          <div className="w-1/2 flex flex-col justify-center">
-            <h1 className="font-bold text-2xl text-[#3F3D56] dark:text-[#E4E4E4]">
+          <div className="w-1/2 flex flex-col justify-center p-20">
+            <h1 className="font-bold text-2xl text-[#3F3D56] dark:text-[#E4E4E4] mb-8">
               What is Hydra ?
             </h1>
-            <p className="font-normal text-xl text-[rgb(0,0,0)] dark:text-[#F9F8F8]">
+            <p className="font-normal text-xl text-[rgb(0,0,0)] dark:text-[#F9F8F8] mb-8 pr-10">
               Hydra is a wallet of wallets. It enables extremely large
               membership sets that can take part in fund distribution from a
               central wallet. It works with SOL and any SPL token.
@@ -42,8 +42,8 @@ const Home: NextPage = () => {
           <div className="w-1/2 flex justify-end items-center">
             <HomeBannerSvg
               className={styles.homeBannerSvg}
-              width="100%"
-              height="100%"
+              width="95%"
+              height="95%"
             />
           </div>
         </div>
