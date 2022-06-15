@@ -14,10 +14,15 @@ import {
   SolflareWalletAdapter,
   TorusWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
-import { Cluster, clusterApiUrl } from '@solana/web3.js'
+import { clusterApiUrl } from '@solana/web3.js'
 import { ReactElement, useMemo } from 'react'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { selectCluster } from '../redux/features/wallet/walletSlice'
+import {
+  selectSidebarActive,
+  toggleSidebar,
+} from '../redux/features/sidebar/sidebarSlice'
+import { useAppDispatch } from '../hooks/useAppDispatch'
 import Navbar from './Navbar'
 import SidebarLink from './SidebarLink'
 
@@ -45,6 +50,9 @@ const Layout = ({ children }: LayoutProps) => {
     [cluster]
   )
 
+  const sidebarActive = useAppSelector(selectSidebarActive)
+  const dispatch = useAppDispatch()
+
   return (
     <ConnectionProvider endpoint={clusterApiUrl(cluster)}>
       <WalletProvider wallets={wallets} autoConnect>
@@ -55,6 +63,7 @@ const Layout = ({ children }: LayoutProps) => {
                 id="nav-drawer"
                 type="checkbox"
                 className="drawer-toggle"
+                checked={sidebarActive}
               />
               <div className="drawer-content">
                 <Navbar drawerId="nav-drawer" />
@@ -62,7 +71,11 @@ const Layout = ({ children }: LayoutProps) => {
                 {/* Insert common content (e.g.: footer) here */}
               </div>
               <div className="drawer-side">
-                <label htmlFor="nav-drawer" className="drawer-overlay"></label>
+                <label
+                  htmlFor="nav-drawer"
+                  className="drawer-overlay"
+                  onClick={() => dispatch(toggleSidebar())}
+                ></label>
                 <div className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                   <div className={styles.walletBtnParent}>
                     <WalletMultiButton />

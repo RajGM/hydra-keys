@@ -5,12 +5,16 @@ import NavbarLink from './NavbarLink'
 import ThemeToggle from './ThemeToggle'
 
 import styles from '../styles/Navbar.module.css'
+import { useAppDispatch } from '../hooks/useAppDispatch'
+import { toggleSidebar } from '../redux/features/sidebar/sidebarSlice'
 
 type NavbarProps = {
   drawerId: string
 }
 
 const Navbar = ({ drawerId }: NavbarProps) => {
+  const dispatch = useAppDispatch()
+
   return (
     <div className="container mx-auto flex flex-row justify-between items-center p-6">
       <div className="flex flex-row justify-start items-center gap-10">
@@ -42,6 +46,7 @@ const Navbar = ({ drawerId }: NavbarProps) => {
         <label
           htmlFor={drawerId}
           className="btn btn-square btn-ghost drawer-button sm:hidden"
+          onClick={() => dispatch(toggleSidebar())}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
