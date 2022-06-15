@@ -1,6 +1,7 @@
 .homeBannerSvg {
   fill: #dddcde;
   color: #dddcde;
+  transform: translateX(25%);
 }
 
 [data-theme='dark'] .homeBannerSvg {
