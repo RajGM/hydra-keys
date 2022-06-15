@@ -173,8 +173,3 @@ input[type=number] {
   text-align: center;
   z-index: 10;
 }
-
-.carousel-indicators li {
-  display: inline-block;
-  margin: 0 5px;
-}
