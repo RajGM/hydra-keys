@@ -25,8 +25,7 @@ export default async function handler(
         console.log(element.pubkey); //I can do this since wallet addresses must be unique and there will be no two wallets with the same address
         if(element.pubkey===viewWalletPubkey){
             res.status(200).json({found:true, 
-                wallet:element,
-                members:result});
+                wallet:element,members:result});
 
             return;
         }

@@ -19,9 +19,10 @@ model Wallet {
 }
 
 model Membership {
-  memberPubkey   String @id
+  memberPubkey   String 
   memberShipType String
   shareCount     Int
+  id             String @id @default(uuid())
 
   wallet       Wallet @relation(references: [pubkey], fields: [walletPubkey])
   walletPubkey String
