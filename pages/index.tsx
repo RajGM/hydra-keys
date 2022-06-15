@@ -35,12 +35,12 @@ const Home: NextPage = () => {
         <p>The most flexible membership model. Membership is associated with staked ownership of the specified Token.</p>
         </div>
 
-        <label for="carousel-3" class="carousel-control prev control-1">‹</label>
-        <label for="carousel-2" class="carousel-control next control-1">›</label>
-        <label for="carousel-1" class="carousel-control prev control-2">‹</label>
-        <label for="carousel-3" class="carousel-control next control-2">›</label>
-        <label for="carousel-2" class="carousel-control prev control-3">‹</label>
-        <label for="carousel-1" class="carousel-control next control-3">›</label>
+        <label for="carousel-3" className="carousel-control prev control-1">‹</label>
+        <label for="carousel-2" className="carousel-control next control-1">›</label>
+        <label for="carousel-1" className="carousel-control prev control-2">‹</label>
+        <label for="carousel-3" className="carousel-control next control-2">›</label>
+        <label for="carousel-2" className="carousel-control prev control-3">‹</label>
+        <label for="carousel-1" className="carousel-control next control-3">›</label>
 
         </div>
 
