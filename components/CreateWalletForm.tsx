@@ -1,10 +1,10 @@
-import {FormikErrors, useFormik} from 'formik'
+import { FormikErrors, useFormik } from 'formik'
 
 interface FormValues {
-  name: string;
-  shares: number;
-  model: string,
-  acceptSPL: boolean,
+  name: string
+  shares: number
+  model: string
+  acceptSPL: boolean
   pubKeySPL: string
 }
 
@@ -19,10 +19,11 @@ const CreateWalletForm = () => {
 
   const onSubmit = (values: any) => {
     console.log('submitted', values)
+    // add Hydra wallet creation logic here
   }
 
   const validate = (values: any) => {
-    let errors: FormikErrors<FormValues> = {};
+    let errors: FormikErrors<FormValues> = {}
 
     if (!values.name) {
       errors.name = 'This field is required'
@@ -50,7 +51,7 @@ const CreateWalletForm = () => {
     onSubmit,
     validate,
   })
-  console.log(formik.errors)
+
   return (
     <form
       className="flex w-full flex-wrap gap-y-10"
@@ -141,14 +142,20 @@ const CreateWalletForm = () => {
             disabled={!formik.values.acceptSPL}
             {...formik.getFieldProps('pubKeySPL')}
           />
-          {formik.errors.pubKeySPL && formik.touched.pubKeySPL && formik.values.acceptSPL ? (
-              <div className="text-red-500">{formik.errors.pubKeySPL}</div>
+          {formik.errors.pubKeySPL &&
+          formik.touched.pubKeySPL &&
+          formik.values.acceptSPL ? (
+            <div className="text-red-500">{formik.errors.pubKeySPL}</div>
           ) : null}
         </div>
       </div>
 
       <div className="w-full flex justify-center md:justify-end">
-        <button type="submit" className="btn btn-secondary">
+        <button
+          type="submit"
+          className="btn btn-secondary disabled:opacity-30 disabled:bg-secondary disabled:text-white"
+          disabled={!(formik.dirty && formik.isValid)}
+        >
           Create
         </button>
       </div>
