@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import HomeBannerSvg from '../assets/svg/homeBanner'
+import styles from './../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +15,11 @@ const Home: NextPage = () => {
         <div className="flex w-full h-screen max-h-[85vh]">
           <div className="w-1/2">02</div>
           <div className="w-1/2 flex justify-end items-center">
-            <HomeBannerSvg fill="#dddcde" width="100%" height="100%" />
+            <HomeBannerSvg
+              className={styles.homeBannerSvg}
+              width="100%"
+              height="100%"
+            />
           </div>
         </div>
       </main>

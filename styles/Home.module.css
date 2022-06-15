@@ -1,0 +1,9 @@
+.homeBannerSvg {
+  fill: #dddcde;
+  color: #dddcde;
+}
+
+[data-theme='dark'] .homeBannerSvg {
+  fill: #211f31;
+  color: #211f31;
+}
