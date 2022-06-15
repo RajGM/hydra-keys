@@ -13,9 +13,27 @@ const CreateWalletForm = () => {
     console.log('submitted', values)
   }
 
+  const validate = (values: any) => {
+    let errors = {}
+
+    if(!values.name) {
+      // @ts-ignore
+      errors.name = 'This field is required'
+    }
+
+
+    if(values.shares == 0) {
+      // @ts-ignore
+      errors.shares = 'Enter a valid number of shares'
+    }
+
+    return errors
+  }
+
   const formik = useFormik({
     initialValues,
     onSubmit,
+    validate,
   })
 
   return (
@@ -33,14 +51,15 @@ const CreateWalletForm = () => {
             id="name"
             placeholder="Enter a name for your wallet"
             className="input input-bordered w-full"
-            onChange={formik.handleChange}
-            value={formik.values.name}
+            { ...formik.getFieldProps('name')}
           />
           <label>
             <span className="label-text-alt text-white text-sm">
               * choose a unique name for your wallet
             </span>
           </label>
+
+          {formik.errors.name && formik.touched.name ? <div className="text-red-500">{formik.errors.name}</div> : null}
         </div>
 
         <div className="form-control w-4/5">
@@ -52,9 +71,9 @@ const CreateWalletForm = () => {
             id="shares"
             placeholder="Enter a number of shares"
             className="input input-bordered w-full"
-            onChange={formik.handleChange}
-            value={formik.values.shares}
+            { ...formik.getFieldProps('shares')}
           />
+          {formik.errors.shares && formik.touched.shares ? <div className="text-red-500">{formik.errors.shares}</div> : null}
         </div>
       </div>
 
@@ -66,8 +85,7 @@ const CreateWalletForm = () => {
           <select
             id="model"
             className="select select-bordered w-full"
-            onChange={formik.handleChange}
-            value={formik.values.model}
+            { ...formik.getFieldProps('model')}
           >
             <option>Wallet membership</option>
             <option>NFT membership</option>
@@ -81,8 +99,7 @@ const CreateWalletForm = () => {
               type="checkbox"
               id="acceptSPL"
               className="checkbox checkbox-primary"
-              onChange={formik.handleChange}
-              value={formik.values.acceptSPL}
+              { ...formik.getFieldProps('acceptSPL')}
             />
             <span className="text-white">Accept SPL Tokens</span>
           </label>
@@ -95,9 +112,7 @@ const CreateWalletForm = () => {
             id="pubKeySPL"
             placeholder="Enter a public key"
             className="input input-bordered w-full"
-            onChange={formik.handleChange}
-            disabled={!formik.values.acceptSPL}
-            value={formik.values.pubKeySPL}
+            { ...formik.getFieldProps('pubKeySPL')}
           />
         </div>
       </div>
