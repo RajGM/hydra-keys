@@ -23,6 +23,7 @@ module.exports = {
           ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
           primary: "#C27501",
           "primary-content": "#F1F1F1",
+          "base-content": "#E6E6E6",
           "--btn-text-case": "capitalize",
         },
       },

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import walletReducer from '../features/wallet/walletSlice'
+import sidebarReducer from '../features/sidebar/sidebarSlice'
 
 export const store = configureStore({
   reducer: {
-    wallet: walletReducer
+    wallet: walletReducer,
+    sidebar: sidebarReducer
   },
 })
 
