@@ -21,41 +21,45 @@ body {
     background: linear-gradient(rgba(16, 0, 163, 0.3), rgba(14, 12, 32, 0));
 }
 
-h1{ 
-  text-align: center; 
+h1 {
+  text-align: center;
   font-size: 50px;
-} 
+}
+
 
 h2{ 
   text-align: center; 
   font-size: 40px;
 } 
 
-.semi{ 
-  position: absolute; 
-  top: 60%; 
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  height: 700px; 
-  width: 1400px; 
-  border-radius: 700px 700px 0 0; 
-  border: 1px dashed gray; 
-  border-bottom-color: transparent; 
-} 
-
-.NFT{ 
+.semi {
   position: absolute;
-  display: block; 
-  margin-left: 45%; 
-  height: 150px;
-} 
+  top: 100%;
+  left: 10%;
+  transform: translate(0%, 20%);
+  height: 600px;
+  width: 80%;
+  border-radius: 700px 700px 0 0;
+  border: 1px dashed gray;
+  border-bottom-color: transparent;
+  z-index: -1;
+}
 
-#wallet{ 
+
+.NFT {
+  position: absolute;
+  display: block;
+  margin-left: 45%;
+  height: 150px;
+}
+
+#wallet {
   margin-left: 7%;
   margin-top: 20%;
-  float: left; 
+  float: left;
   height: 150px;
 } 
+
 #grow {
     margin-top: 20%;
     margin-right: 7%;
@@ -76,7 +80,6 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
-
 
 .information {
   padding: 250px;
@@ -173,3 +176,4 @@ input[type=number] {
   text-align: center;
   z-index: 10;
 }
+
