@@ -14,7 +14,7 @@ export default async function handler(
     const { viewWalletPubkey } = req.query;
     console.log(viewWalletPubkey);
     const wallets=await prisma.wallet.findMany();
-    const membersdb=await prisma.membership.findMany();
+    const membersdb: Membership[] =await prisma.membership.findMany();
     console.log(wallets);
     console.log(membersdb);
     const result = await prisma.$queryRaw`SELECT * FROM membership WHERE walletPubkey=${viewWalletPubkey}`;

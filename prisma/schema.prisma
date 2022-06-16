@@ -13,14 +13,15 @@ datasource db {
 model Wallet {
   pubkey      String       @id @unique
   authority   String
+  memberShipType String
   acceptSPL   Boolean
-  memberships Membership[]
+  membership Membership[]
   totalShares Int
 }
 
 model Membership {
   memberPubkey   String 
-  memberShipType String
+  
   shareCount     Int
   id             String @id @default(uuid())
 
