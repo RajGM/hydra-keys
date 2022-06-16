@@ -9,6 +9,9 @@ module.exports = {
         nunito: ['Nunito', 'sans-serif'],
       },
     },
+    screens: {
+      esm: { max: '490px' },
+    },
   },
   darkMode: 'class',
   plugins: [require('daisyui')],
