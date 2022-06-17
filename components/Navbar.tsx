@@ -16,7 +16,7 @@ const Navbar = ({ drawerId }: NavbarProps) => {
   const dispatch = useAppDispatch()
 
   return (
-    <div className="container mx-auto flex flex-row justify-between items-center p-6">
+    <div className="container mx-auto flex flex-row justify-between items-center p-6 sm:px-0">
       <div className="flex flex-row justify-start items-center gap-10">
         <Link href="/">
           <a className="leading-[0] relative w-[60px] h-[60px] sm:w-[90px] sm:h-[90px]">
@@ -30,7 +30,9 @@ const Navbar = ({ drawerId }: NavbarProps) => {
         </Link>
         <Link href="/">
           <a>
-            <h1 className="hidden md:block text-lg font-bold dark:text-[#F9F8F8]">Hydra Wallet</h1>
+            <h1 className="hidden md:block text-lg font-bold dark:text-[#F9F8F8]">
+              Hydra Wallet
+            </h1>
           </a>
         </Link>
       </div>
