@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Wallet {
+  pubkey      String       @id @unique
+  authority   String
+  memberShipType String
+  acceptSPL   Boolean
+  membership Membership[]
+  totalShares Int
+}
+
+model Membership {
+  memberPubkey   String 
+  
+  shareCount     Int
+  id             String @id @default(uuid())
+
+  wallet       Wallet @relation(references: [pubkey], fields: [walletPubkey])
+  walletPubkey String
+}
