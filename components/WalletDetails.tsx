@@ -4,21 +4,29 @@ type WalletDetailsProps = {
   wallet: any
 }
 
+const addMember = () => {
+  console.log('adding member')
+}
+
 const WalletDetails = ({ wallet }: WalletDetailsProps) => {
   return (
     <div className="w-full flex flex-col gap-16">
-      <div className="flex justify-between">
-        <div>
-          <h1 className="w-full text-center md:text-left text-3xl md:text-4xl font-bold text-primary dark:text-white">
+      <div className="flex justify-between flex-wrap gap-5 md:gap-0">
+        <div className="w-full md:w-1/2 text-center md:text-left">
+          <p className="w-full text-3xl md:text-4xl font-bold text-primary dark:text-white">
             #{wallet.name}
-          </h1>
-          <span>{wallet.pubKey}</span>
+          </p>
+          <span className="break-words">{wallet.pubKey}</span>
         </div>
 
-        <div className="tooltip tooltip-secondary" data-tip="Add members">
+        <div
+          className="tooltip tooltip-secondary w-full md:w-1/3 flex justify-center md:justify-end"
+          data-tip="Add members"
+        >
           <button
             className="bg-secondary h-12 w-12 flex hover:brightness-90 justify-center items-center rounded-lg"
             type="button"
+            onClick={addMember}
           >
             <FaUserPlus className="text-white text-xl" />
           </button>
@@ -55,8 +63,8 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           <p>{wallet.model}</p>
         </div>
 
-        <div className="flex w-full justify-between">
-          <div className="flex justify-between w-1/3">
+        <div className="flex w-full justify-between flex-wrap gap-y-5">
+          <div className="flex justify-between w-full md:w-1/3">
             <p>Accept SPL token: </p>
             <p className="text-primary">
               {wallet.acceptSPL ? <span>Accept</span> : <span>No</span>}
@@ -64,9 +72,9 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           </div>
 
           {wallet.acceptSPL ? (
-            <div className="flex justify-between">
+            <div className="flex flex-col lg:flex-row justify-between w-full md:w-1/2">
               <p className="mr-3">SPL public key: </p>
-              <p className="text-primary"> {wallet.pubKeySPL}</p>
+              <p className="text-primary break-words"> {wallet.pubKeySPL}</p>
             </div>
           ) : null}
         </div>
