@@ -11,6 +11,7 @@ datasource db {
 }
 
 model Wallet {
+  name        String
   pubkey      String       @id @unique
   authority   String
   memberShipType String
