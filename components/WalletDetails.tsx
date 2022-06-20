@@ -1,16 +1,13 @@
 import { FaCog, FaUserPlus, FaUsers } from 'react-icons/fa'
+import AddMemberModal from "./AddMemberModal";
 
 type WalletDetailsProps = {
   wallet: any
 }
 
-const addMember = () => {
-  console.log('adding member')
-}
-
 const WalletDetails = ({ wallet }: WalletDetailsProps) => {
   return (
-    <div className="w-full flex flex-col gap-16">
+    <div className="w-full flex flex-col gap-10">
       <div className="flex justify-between flex-wrap gap-5 md:gap-0">
         <div className="w-full md:w-1/2 text-center md:text-left">
           <p className="w-full text-3xl md:text-4xl font-bold text-primary dark:text-white">
@@ -20,16 +17,17 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
         </div>
 
         <div
-          className="tooltip tooltip-secondary w-full md:w-1/3 flex justify-center md:justify-end"
-          data-tip="Add members"
+          className=" w-full md:w-1/3 flex justify-center md:justify-end"
         >
-          <button
-            className="bg-secondary h-12 w-12 flex hover:brightness-90 justify-center items-center rounded-lg"
-            type="button"
-            onClick={addMember}
-          >
-            <FaUserPlus className="text-white text-xl" />
-          </button>
+          <div className="tooltip tooltip-secondary" data-tip="Add members">
+            <label
+                htmlFor="add-member-modal"
+                className="bg-secondary cursor-pointer h-12 w-12 flex hover:brightness-90 justify-center items-center rounded-lg"
+            >
+              <FaUserPlus className="text-white text-xl" />
+            </label>
+          </div>
+
         </div>
       </div>
 
@@ -79,6 +77,8 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           ) : null}
         </div>
       </div>
+
+      <AddMemberModal/>
     </div>
   )
 }
