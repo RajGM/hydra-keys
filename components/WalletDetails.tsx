@@ -1,4 +1,4 @@
-import { FaCog, FaUserPlus, FaUsers } from 'react-icons/fa'
+import {FaBalanceScaleLeft, FaCog, FaUserPlus, FaUsers} from 'react-icons/fa'
 import AddMemberModal from "./AddMemberModal";
 
 type WalletDetailsProps = {
@@ -7,8 +7,8 @@ type WalletDetailsProps = {
 
 const WalletDetails = ({ wallet }: WalletDetailsProps) => {
   return (
-    <div className="w-full flex flex-col gap-10">
-      <div className="flex justify-between flex-wrap gap-5 md:gap-0">
+    <div className="w-full flex flex-col gap-8">
+      <div className="flex justify-between flex-wrap gap-5 md:gap-0 pb-8">
         <div className="w-full md:w-1/2 text-center md:text-left">
           <p className="w-full text-3xl md:text-4xl font-bold text-primary dark:text-white">
             #{wallet.name}
@@ -29,6 +29,18 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           </div>
 
         </div>
+      </div>
+
+      <div className="flex justify-between relative items-end w-full">
+        <div className="group">
+          <div className="absolute transition-opacity duration-300 opacity-0 group-hover:opacity-40 flex justify-center h-full items-center -left-6">
+            <FaBalanceScaleLeft className="text-white" />
+          </div>
+
+          <p className="text-xl font-bold">Authority</p>
+        </div>
+
+        <p>{wallet.authority}</p>
       </div>
 
       <div>
