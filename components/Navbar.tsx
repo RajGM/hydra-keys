@@ -30,7 +30,9 @@ const Navbar = ({ drawerId }: NavbarProps) => {
         </Link>
         <Link href="/">
           <a>
-            <h1 className="hidden md:block text-lg font-bold dark:text-[#F9F8F8]">Hydra Wallet</h1>
+            <h1 className="hidden md:block text-lg font-bold dark:text-[#F9F8F8]">
+              Hydra Wallet
+            </h1>
           </a>
         </Link>
       </div>

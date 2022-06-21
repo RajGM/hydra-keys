@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@glasseaters/hydra-sdk": "^0.3.2",
+    "@prisma/client": "^3.15.2",
     "@reduxjs/toolkit": "^1.8.2",
     "@solana/wallet-adapter-base": "^0.9.5",
     "@solana/wallet-adapter-react": "^0.15.5",
@@ -26,6 +28,7 @@
     "@types/react-dom": "18.0.5",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
+    "prisma": "^3.15.2",
     "tailwindcss": "^3.0.24",
     "typescript": "4.7.2"
   }
