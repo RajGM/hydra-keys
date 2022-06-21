@@ -1,3 +1,5 @@
+import Script from 'next/script'
+
 const HomeCarousel = () => {
   return (
     <div>
@@ -68,7 +70,7 @@ const HomeCarousel = () => {
           </div>
         </div>
       </div>
-      <script src="/slider.js"></script>
+      <Script src="/slider.js" />
       <style jsx>{`
         .slider {
           width: 60%;
