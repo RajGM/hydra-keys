@@ -23,8 +23,8 @@ export default async function handler(req, res) {
           authority: body.authority,
           acceptSPL: body.acceptSPL,
           memberShipType: body.memberShipType,
-          totalShares: body.totalShares
-
+          totalShares: body.totalShares,
+          cluster:body.cluster //should be devnet or mainnet-beta
         }
       });
       console.log(savedWallet);
