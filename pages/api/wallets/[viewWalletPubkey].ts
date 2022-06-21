@@ -11,7 +11,7 @@ export default async function handler(
     res: NextApiResponse
   ) {
     console.log(req.query);
-    const { viewWalletPubkey } = req.query;
+    const { viewWalletPubkey } = req.query; 
     console.log(viewWalletPubkey);
     const wallets=await prisma.wallet.findMany();
     const membersdb: Membership[] =await prisma.membership.findMany();

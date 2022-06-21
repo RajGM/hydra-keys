@@ -12,20 +12,22 @@ datasource db {
 
 model Wallet {
   name        String
-  pubkey      String       @id @unique
+  pubkey      String 
   authority   String
   memberShipType String
   acceptSPL   Boolean
   membership Membership[]
   totalShares Int
+  cluster String
+  @@id([cluster,pubkey])
 }
 
 model Membership {
   memberPubkey   String 
-  
+  createdAt  DateTime   @default(now())
   shareCount     Int
-  id             String @id @default(uuid())
-
-  wallet       Wallet @relation(references: [pubkey], fields: [walletPubkey])
-  walletPubkey String
+  cluster String
+  wallet  Wallet  @relation(references: [cluster, pubkey], fields: [cluster, walletPubkey])
+  walletPubkey String 
+  @@id([cluster, walletPubkey,memberPubkey])
 }
