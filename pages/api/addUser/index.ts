@@ -19,7 +19,8 @@ export default async function handler(req, res) {
         data:{
           memberPubkey:body.memberPubkey,
           shareCount:body.shareCount,
-          walletPubkey:body.walletPubkey
+          walletPubkey:body.walletPubkey,
+          wallet:body.wallet
 
         }
       });
