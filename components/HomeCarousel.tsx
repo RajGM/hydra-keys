@@ -77,7 +77,7 @@ const HomeCarousel = () => {
           height: 60%;
           -webkit-box-sizing: border-box;
           box-sizing: border-box;
-          height: 130vh;
+          height: 60vh;
           display: -webkit-box;
           margin-left: 30vh;
         }
