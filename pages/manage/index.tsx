@@ -1,6 +1,6 @@
 import { useWallet } from '@solana/wallet-adapter-react'
 import type { NextPage } from 'next'
-import WalletsList from '../components/WalletsList'
+import WalletsList from '../../components/WalletsList'
 
 const Manage: NextPage = () => {
   return (

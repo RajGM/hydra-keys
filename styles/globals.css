@@ -14,7 +14,7 @@ html[data-theme="dark"] {
 
 body {
     background: linear-gradient(rgba(72, 64, 205, 0.3), rgba(158, 156, 156, 0));
-    @apply font-nunito;
+    @apply font-nunito cursor-default;
 }
 
 [data-theme="dark"] body {
@@ -24,52 +24,4 @@ body {
 h1 {
   text-align: center;
   font-size: 50px;
-}
-
-.semi {
-  position: absolute;
-  top: 100%;
-  left: 10%;
-  transform: translate(0%, 20%);
-  height: 600px;
-  width: 80%;
-  border-radius: 700px 700px 0 0;
-  border: 1px dashed gray;
-  border-bottom-color: transparent;
-  z-index: -1;
-}
-
-.NFT {
-  position: absolute;
-  display: block;
-  margin-left: 45%;
-  height: 150px;
-}
-
-#wallet {
-  margin-left: 7%;
-  margin-top: 20%;
-  float: left;
-  height: 150px;
-} 
-
-#grow {
-    margin-top: 20%;
-    margin-right: 7%;
-    float: right;
-}
-
-.label span {
-    @apply text-lg;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-    -moz-appearance:textfield;
 }
