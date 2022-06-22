@@ -10,6 +10,7 @@ export default async function handler(req, res) {
     console.log("post");
     const body = req.body;
     try {
+      
       //Body for new wallet should be as follows:
       //wallet pubkey
       //authority

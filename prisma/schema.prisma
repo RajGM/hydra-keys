@@ -31,3 +31,4 @@ model Membership {
   walletPubkey String 
   @@id([cluster, walletPubkey,memberPubkey])
 }
+

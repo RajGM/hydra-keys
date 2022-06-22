@@ -22,3 +22,4 @@ CREATE TABLE "Membership" (
     PRIMARY KEY ("cluster", "walletPubkey", "memberPubkey"),
     CONSTRAINT "Membership_cluster_walletPubkey_fkey" FOREIGN KEY ("cluster", "walletPubkey") REFERENCES "Wallet" ("cluster", "pubkey") ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
