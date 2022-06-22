@@ -17,9 +17,12 @@ export default async function handler(req, res) {
 
       const user = await prisma.membership.create({
         data:{
+
           memberPubkey:body.memberPubkey,
           shareCount:body.shareCount,
-          walletPubkey:body.walletPubkey
+          walletPubkey:body.walletPubkey,
+          cluster:body.cluster,
+          wallet:body.wallet
 
         }
       });
