@@ -1,32 +1,41 @@
 import { useWallet } from '@solana/wallet-adapter-react'
+import { PublicKey } from '@solana/web3.js'
 import type { NextPage } from 'next'
+import useSWR from 'swr'
 import WalletsList from '../../components/WalletsList'
 
+const fetcher = (pubkey: PublicKey) => {
+  if (pubkey !== null) {
+    return fetch(`/api/wallets/user/${pubkey.toBase58()}`).then((res) =>
+      res.json()
+    )
+  }
+}
+
 const Manage: NextPage = () => {
+  const { publicKey } = useWallet()
+  const { data, error } = useSWR(publicKey, fetcher)
+
+  if (publicKey === null) {
+    return <p className="text-center">Please connect your wallet</p>
+  }
+
+  if (error) {
+    return <p className="text-center">Failed to load wallets</p>
+  }
+
+  if (!data) {
+    return <p className="text-center">Loading...</p>
+  }
+
   return (
     <div className="container mx-auto pt-8 px-6 flex flex-col justify-start items-start">
-      <h1 className="text-2xl font-extrabold font-['Nunito',sans-serif]">Your Hydra Wallets</h1>
+      <h1 className="text-2xl font-extrabold font-nunito">
+        Your Hydra Wallets
+      </h1>
       <WalletsList
         className="mt-12 w-full"
-        wallets={[
-          {
-            name: 'MY WALLEEEEET',
-            pubkey: 'D4QYCpdQ9wi9NZ8VpDf3TvdeMPkRGoj2MvoEBzEYYetf',
-            authority:
-              useWallet().publicKey?.toBase58() ||
-              '3CNWNUgsX6b43ciMGysughdxzQ5NT89dQ2shcNG3xtFr',
-          },
-          {
-            name: 'VeryUniqueName',
-            pubkey: 'CEk6vf2HRZBx1ancEVafrkjSLzLiMJYKeegvxPVkFqZx',
-            authority: 'GTiJiyNHcF5QXVEeqYJqHRcJHjgKn5AKjetPtJNMVtv7',
-          },
-          {
-            name: 'EvenMoreUniqueName',
-            pubkey: 'CEk9vf3HRZBx1ancEVVaafjSLzLiMJMMeegvxPVkFqZx',
-            authority: 'GTiJiyNHcF5QXVEeqYJqHRcJHjgKn5AKjetPtJNMVtv7',
-          },
-        ]}
+        wallets={data.found ? data.in : []}
       />
     </div>
   )
