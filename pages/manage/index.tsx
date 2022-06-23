@@ -4,17 +4,16 @@ import type { NextPage } from 'next'
 import useSWR from 'swr'
 import WalletsList from '../../components/WalletsList'
 
-const fetcher = (pubkey: PublicKey) => {
-  if (pubkey !== null) {
-    return fetch(`/api/wallets/user/${pubkey.toBase58()}`).then((res) =>
-      res.json()
-    )
+const fetcher = (key: string) => {
+  if (key) {
+    return fetch(key).then((res) => res.json())
   }
 }
 
 const Manage: NextPage = () => {
   const { publicKey } = useWallet()
-  const { data, error } = useSWR(publicKey, fetcher)
+  const swrKey = publicKey ? `/api/wallets/user/${publicKey.toBase58()}` : ''
+  const { data, error } = useSWR(swrKey, fetcher)
 
   if (publicKey === null) {
     return <p className="text-center">Please connect your wallet</p>
