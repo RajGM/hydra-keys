@@ -11,24 +11,25 @@ datasource db {
 }
 
 model Wallet {
-  name        String
-  pubkey      String 
-  authority   String
+  name           String
+  pubkey         String
+  authority      String
   memberShipType String
-  acceptSPL   Boolean
-  membership Membership[]
-  totalShares Int
-  cluster String
-  @@id([cluster,pubkey])
+  acceptSPL      Boolean
+  membership     Membership[]
+  totalShares    Int
+  cluster        String
+  validated      Boolean      @default(false)
+  @@id([cluster, pubkey])
 }
 
 model Membership {
-  memberPubkey   String 
-  createdAt  DateTime   @default(now())
-  shareCount     Int
-  cluster String
-  wallet  Wallet  @relation(references: [cluster, pubkey], fields: [cluster, walletPubkey])
-  walletPubkey String 
-  @@id([cluster, walletPubkey,memberPubkey])
-}
+  memberPubkey String
+  createdAt    DateTime @default(now())
+  shareCount   Int
+  cluster      String
+  wallet       Wallet   @relation(references: [cluster, pubkey], fields: [cluster, walletPubkey])
+  walletPubkey String
 
+  @@id([cluster, walletPubkey, memberPubkey])
+}
