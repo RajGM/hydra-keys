@@ -15,6 +15,10 @@ model Wallet {
   pubkey      String       @id @unique
   authority   String
   memberShipType String
+  lastSnapshotAmount Int
+  totalMembers Int
+  totalInflow Int
+  bumpSeed Int
   acceptSPL   Boolean
   membership Membership[]
   totalShares Int
