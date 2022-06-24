@@ -34,19 +34,19 @@ const HomeCarousel = () => {
                 <img src="/NFT.png" alt="img" />
               </div>
               <div className="slides-holder__item">
-                <img src="/wallet.png" alt="img" />
+                <img src="/walletnew.png" alt="img" />
               </div>
               <div className="slides-holder__item">
-                <img src="/grow.png" alt="img" />
+                <img src="/token.png" alt="img" />
               </div>
               <div className="slides-holder__item">
                 <img src="/NFT.png" alt="img" />
               </div>
               <div className="slides-holder__item">
-                <img src="/wallet.png" alt="img" />
+                <img src="/walletnew.png" alt="img" />
               </div>
               <div className="slides-holder__item">
-                <img src="/grow.png" alt="img" />
+                <img src="/growtoken.png" alt="img" />
               </div>
             </div>
             <div className="descriptions">
