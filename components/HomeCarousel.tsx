@@ -46,7 +46,7 @@ const HomeCarousel = () => {
                 <img src="/walletnew.png" alt="img" />
               </div>
               <div className="slides-holder__item">
-                <img src="/growtoken.png" alt="img" />
+                <img src="/token.png" alt="img" />
               </div>
             </div>
             <div className="descriptions">
