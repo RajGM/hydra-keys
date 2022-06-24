@@ -107,6 +107,35 @@ const HomeCarousel = () => {
           </div>
         </div>
       </div>
+      <div className='min-size'>
+      <div className="descriptions__item">
+                <h1>NFT Membership</h1><br/>
+                <p className="description">
+                  {' '}
+                  Using NFTs, the membership is tied to an NFT mint address
+                  instead of static public address. Each NFT mint address can
+                  still have a different quantity of shares as in the Wallet
+                  model
+                </p>
+              </div>
+              <div className="descriptions__item">
+                <h1>Wallet Membership</h1><br/>
+                <p className="description">
+                  {' '}
+                  One of the simplest membership model. It's just a list of each
+                  Member's public address and the number of shares they own.
+                </p>
+              </div>
+              <div className="descriptions__item">
+                <h1>Token Membership</h1><br/>
+                <p className="description">
+                  {' '}
+                  The Token is the most flexible membership model, but is a bit
+                  more complicated. In this model, Membership is associated with
+                  staked ownership of the specified Token.
+                </p>
+        </div>
+      </div>
       <Script src="/slider.js" /><script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
       <style jsx>{`
         .slider {
@@ -121,6 +150,37 @@ const HomeCarousel = () => {
           justify-content: center;
           align-items: center;
           text-align: center;
+        }
+        
+        @media screen and (max-width: 960px) {
+         
+          .controls{
+            display: none;
+          }
+          
+          .slides-holder{
+            display: none;
+          }
+          
+          .description{
+            display: content;
+            text-align: center;
+            padding-left: 15px;
+            padding-right: 15px;
+            height: 180px;
+            font-size: 20px;
+          }
+
+          .slider{
+            display: none;
+          }          
+
+        }
+
+        @media screen and (min-width: 960px){
+          .min-size{
+            display:none;
+          }
         }
 
         .circular-slider {
