@@ -115,7 +115,11 @@ const HomeCarousel = () => {
           box-sizing: border-box;
           height: 60vh;
           display: -webkit-box;
-          margin-left: 30vh;
+          margin-left: 34vh;
+          margin-bottom: 10vh;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
         }
 
         .circular-slider {
