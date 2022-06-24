@@ -106,7 +106,7 @@ const HomeCarousel = () => {
           </div>
         </div>
       </div>
-      <Script src="/slider.js" />
+      <Script src="/slider.js" /><script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
       <style jsx>{`
         .slider {
           width: 60%;
