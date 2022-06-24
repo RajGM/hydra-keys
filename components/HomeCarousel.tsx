@@ -3,6 +3,7 @@ import Script from 'next/script'
 const HomeCarousel = () => {
   return (
     <div>
+      <h1>Membership Models</h1>
       <div className="slider">
         <div className="circular-slider circular-slider-1">
           <div className="wrapper">
@@ -50,7 +51,7 @@ const HomeCarousel = () => {
             </div>
             <div className="descriptions">
               <div className="descriptions__item descriptions__item_visible">
-                <h1>NFT Membership</h1>
+                <h1>NFT Membership</h1><br/>
                 <p className="description">
                   Using NFTs, the membership is tied to an NFT mint address
                   instead of static public address. Each NFT mint address can
@@ -59,7 +60,7 @@ const HomeCarousel = () => {
                 </p>
               </div>
               <div className="descriptions__item">
-                <h1>Wallet Membership</h1>
+                <h1>Wallet Membership</h1><br/>
                 <p className="description">
                   {' '}
                   One of the simplest membership model. It's just a list of each
@@ -67,7 +68,7 @@ const HomeCarousel = () => {
                 </p>
               </div>
               <div className="descriptions__item">
-                <h1>Token Membership</h1>
+                <h1>Token Membership</h1><br/>
                 <p className="description">
                   {' '}
                   The Token is the most flexible membership model, but is a bit
@@ -76,7 +77,7 @@ const HomeCarousel = () => {
                 </p>
               </div>
               <div className="descriptions__item">
-                <h1>NFT Membership</h1>
+                <h1>NFT Membership</h1><br/>
                 <p className="description">
                   {' '}
                   Using NFTs, the membership is tied to an NFT mint address
@@ -86,7 +87,7 @@ const HomeCarousel = () => {
                 </p>
               </div>
               <div className="descriptions__item">
-                <h1>Wallet Membership</h1>
+                <h1>Wallet Membership</h1><br/>
                 <p className="description">
                   {' '}
                   One of the simplest membership model. It's just a list of each
@@ -94,7 +95,7 @@ const HomeCarousel = () => {
                 </p>
               </div>
               <div className="descriptions__item">
-                <h1>Token Membership</h1>
+                <h1>Token Membership</h1><br/>
                 <p className="description">
                   {' '}
                   The Token is the most flexible membership model, but is a bit
@@ -311,6 +312,7 @@ const HomeCarousel = () => {
           -webkit-transition: opacity 0s 0s linear;
           -o-transition: opacity 0s 0s linear;
           transition: opacity 0s 0s linear;
+          font-size: 13px;
         }
 
         .circular-slider .wrapper .descriptions__item_visible {
