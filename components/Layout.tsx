@@ -24,9 +24,7 @@ import {
 } from '../redux/features/sidebar/sidebarSlice'
 import { useAppDispatch } from '../hooks/useAppDispatch'
 import Navbar from './Navbar'
-import SidebarLink from './SidebarLink'
-
-import styles from '../styles/Layout.module.css'
+import DrawerMenu from './DrawerMenu'
 
 require('@solana/wallet-adapter-react-ui/styles.css')
 
@@ -77,17 +75,7 @@ const Layout = ({ children }: LayoutProps) => {
                   className="drawer-overlay"
                   onClick={() => dispatch(toggleSidebar())}
                 ></label>
-                <div className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                  <div className={styles.walletBtnParent}>
-                    <WalletMultiButton />
-                  </div>
-                  <ul>
-                    <li>
-                      <SidebarLink href="/create" text="Create" />
-                      <SidebarLink href="/manage" text="Manage" />
-                    </li>
-                  </ul>
-                </div>
+                <DrawerMenu />
               </div>
             </div>
           </div>

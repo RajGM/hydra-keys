@@ -7,6 +7,7 @@ import ThemeToggle from './ThemeToggle'
 import styles from '../styles/Navbar.module.css'
 import { useAppDispatch } from '../hooks/useAppDispatch'
 import { toggleSidebar } from '../redux/features/sidebar/sidebarSlice'
+import { useWallet } from '@solana/wallet-adapter-react'
 
 type NavbarProps = {
   drawerId: string
@@ -14,6 +15,7 @@ type NavbarProps = {
 
 const Navbar = ({ drawerId }: NavbarProps) => {
   const dispatch = useAppDispatch()
+  const { publicKey } = useWallet()
 
   return (
     <div className="container mx-auto flex flex-row justify-between items-center p-6 sm:px-0">
@@ -30,12 +32,18 @@ const Navbar = ({ drawerId }: NavbarProps) => {
         </Link>
         <Link href="/">
           <a>
-            <h1 className="hidden md:block text-lg font-bold dark:text-[#F9F8F8]">Hydra Wallet</h1>
+            <h1 className="hidden md:block text-lg font-bold dark:text-[#F9F8F8]">
+              Hydra Wallet
+            </h1>
           </a>
         </Link>
       </div>
       <div className="flex flex-row justify-end items-center gap-4 sm:gap-8">
-        <div className="hidden sm:flex flex-row gap-6 justify-end items-center">
+        <div
+          className={`hidden ${
+            publicKey ? 'sm:flex' : 'sm:hidden'
+          } flex-row gap-6 justify-end items-center`}
+        >
           <NavbarLink href="/create" text="Create" />
           <NavbarLink href="/manage" text="Manage" />
         </div>
