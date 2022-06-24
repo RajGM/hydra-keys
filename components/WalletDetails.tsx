@@ -1,5 +1,7 @@
-import {FaBalanceScaleLeft, FaCog, FaUserPlus, FaUsers} from 'react-icons/fa'
-import AddMemberModal from "./AddMemberModal";
+import { FaBalanceScaleLeft, FaCog, FaUserPlus, FaUsers } from 'react-icons/fa'
+import AddMemberModal from './AddMemberModal'
+import MembersTable from "./MembersTable";
+import styles from '../styles/MemembersList.module.css'
 
 type WalletDetailsProps = {
   wallet: any
@@ -16,18 +18,15 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           <span className="break-words">{wallet.pubKey}</span>
         </div>
 
-        <div
-          className=" w-full md:w-1/3 flex justify-center md:justify-end"
-        >
+        <div className=" w-full md:w-1/3 flex justify-center md:justify-end">
           <div className="tooltip tooltip-secondary" data-tip="Add members">
             <label
-                htmlFor="add-member-modal"
-                className="bg-secondary cursor-pointer h-12 w-12 flex hover:brightness-90 justify-center items-center rounded-lg"
+              htmlFor="add-member-modal"
+              className="bg-secondary cursor-pointer h-12 w-12 flex hover:brightness-90 justify-center items-center rounded-lg"
             >
               <FaUserPlus className="text-white text-xl" />
             </label>
           </div>
-
         </div>
       </div>
 
@@ -56,7 +55,11 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           <p>Total shares: {wallet.shares}</p>
         </div>
         {/*add members table here */}
-        <div className="w-full bg-white bg-opacity-25 h-80"></div>
+        <div className={`card-bordered shadow-xl w-full rounded h-80 overflow-y-scroll ${styles.membersTableBg}`}>
+          {wallet.members.length > 0 ? (<MembersTable members={wallet?.members} />): (<p className="text-center text-xl font-bold">No members please add new members</p>)}
+          {/* <MembersTable member={wallet.members} /> */}
+          
+        </div>
       </div>
 
       <div className="flex flex-col gap-5">
@@ -90,7 +93,7 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
         </div>
       </div>
 
-      <AddMemberModal/>
+      <AddMemberModal />
     </div>
   )
 }

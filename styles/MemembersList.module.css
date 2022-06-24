@@ -1,0 +1,35 @@
+[data-theme='dark'] .membersTableBg {
+  background: linear-gradient(
+    180deg,
+    #201b48 0%,
+    #1e184e 0%,
+    rgba(30, 24, 78, 0.31) 100%
+  );
+}
+
+.distributeBtn {
+  background: rgba(0, 208, 58, 0.3);
+  color: #00d03a;
+}
+
+.distributeBtn:hover {
+  background: rgba(0, 208, 58, 0.3);
+}
+
+.membersList:hover {
+  background: rgba(217, 217, 217, 0.2);
+  cursor: pointer;
+}
+
+
+[data-theme='dark'] .th {
+  background: #1a1649;
+}
+
+.th {
+  border-bottom: 0.5px dashed #e6e6e6;
+  position: sticky;
+  top: 0%;
+  background: #d5d3eb;
+}
+
