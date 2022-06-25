@@ -26,6 +26,10 @@ h1 {
   font-size: 50px;
 }
 
+.footerDiv{
+    height: 300px;
+}
+
 [data-theme="light"] .footerDiv{
     background-color: #2F2E41;
 }
@@ -40,4 +44,6 @@ h1 {
 
 [data-theme="dark"] #logoImg{
     fill: yellow;
+    @apply brightness-0 invert
 }
+
