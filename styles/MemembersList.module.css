@@ -7,6 +7,15 @@
   );
 }
 
+.borderColor {
+  border-color: black;
+}
+
+[data-theme='dark'] .borderColor {
+  border-color: white;
+}
+
+
 .distributeBtn {
   background: rgba(0, 208, 58, 0.3);
   color: #00d03a;
@@ -27,9 +36,12 @@
 }
 
 .th {
-  border-bottom: 0.5px dashed #e6e6e6;
+  border-bottom: 0.5px dashed black;
   position: sticky;
   top: 0%;
   background: #d5d3eb;
 }
 
+[data-theme='dark'] .th {
+  border-bottom: 0.5px dashed #e6e6e6; 
+}

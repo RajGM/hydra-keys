@@ -55,7 +55,7 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           <p>Total shares: {wallet.shares}</p>
         </div>
         {/*add members table here */}
-        <div className={`card-bordered shadow-xl w-full rounded h-80 overflow-y-scroll ${styles.membersTableBg}`}>
+        <div className={`card-bordered shadow-xl w-full rounded h-80 overflow-y-scroll ${styles.membersTableBg} ${styles.borderColor}`}>
           {wallet.members.length > 0 ? (<MembersTable members={wallet?.members} />): (<p className="text-center text-xl font-bold">No members please add new members</p>)}
           {/* <MembersTable member={wallet.members} /> */}
           
