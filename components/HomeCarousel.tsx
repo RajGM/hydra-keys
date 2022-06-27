@@ -18,16 +18,6 @@ const HomeCarousel = () => {
                   <i className="far fa-arrow-alt-circle-right"></i>
                 </div>
               </div>
-              <div className="controls__autoplay controls__autoplay_running">
-                <div className="icon-wrapper">
-                  <div className="pause">
-                    <i className="far fa-pause-circle"></i>
-                  </div>
-                  <div className="run">
-                    <i className="far fa-play-circle"></i>
-                  </div>
-                </div>
-              </div>
             </div>
             <div className="slides-holder">
               <div className="slides-holder__item slides-holder__item_active">
@@ -109,6 +99,7 @@ const HomeCarousel = () => {
       </div>
       <div className='min-size'>
       <div className="descriptions__item">
+      <div className="desc_one">
                 <h1>NFT Membership</h1><br/>
                 <p className="description">
                   {' '}
@@ -117,8 +108,10 @@ const HomeCarousel = () => {
                   still have a different quantity of shares as in the Wallet
                   model
                 </p>
+                </div>
               </div>
               <div className="descriptions__item">
+              <div className="desc_two">
                 <h1>Wallet Membership</h1><br/>
                 <p className="description">
                   {' '}
@@ -126,7 +119,9 @@ const HomeCarousel = () => {
                   Member's public address and the number of shares they own.
                 </p>
               </div>
+              </div>
               <div className="descriptions__item">
+              <div className="desc_three">
                 <h1>Token Membership</h1><br/>
                 <p className="description">
                   {' '}
@@ -134,6 +129,7 @@ const HomeCarousel = () => {
                   more complicated. In this model, Membership is associated with
                   staked ownership of the specified Token.
                 </p>
+                </div>
         </div>
       </div>
       <Script src="/slider.js" /><script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -170,7 +166,28 @@ const HomeCarousel = () => {
             height: 180px;
             font-size: 20px;
           }
+          
+          .desc_one{
+            background-image: url("/NFT.png");
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: 120px 120px;
+          }
 
+          .desc_two{
+            background-image: url("/wallet.png");
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: 120px 120px;
+          }
+
+          .desc_three{
+            background-image: url("/token.png");
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: 120px 120px;
+          }
+          
           .slider{
             display: none;
           }          
@@ -181,6 +198,10 @@ const HomeCarousel = () => {
           .min-size{
             display:none;
           }
+        }
+        
+        @media screen and (max-width: 620px){
+          
         }
 
         .circular-slider {
