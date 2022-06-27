@@ -17,7 +17,7 @@ const FourOhFour: NextPage = () => {
         404
       </h1>
       <p className="w-full text-center md:text-center text-xl md:text-2xl font-bold text-primary p-1 px-5 dark:text-white">
-        Hey Captain! Looks like you're heading to a wrong planet!
+        Hey Captain! Looks like you&apos;re heading to a wrong planet!
       </p>
       <Link href="/" passHref>
         <button className="btn w-fit btn-secondary px-6 text-lg font-normal">
