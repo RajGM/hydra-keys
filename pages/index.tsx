@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       // If user's wallet is connected
       router.push('/manage')
     } else {
-      alert('Connect Wallet!')
+      // Show connect wallet modal
     }
   }
 
