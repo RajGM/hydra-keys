@@ -4,6 +4,7 @@ import HomeBannerSvg from '../assets/svg/homeBanner'
 import ArrowSvg from '../assets/svg/arrow'
 import styles from './../styles/Home.module.css'
 import MidSection from '../components/MidSection'
+import Footer from '../components/Footer'
 
 const Home: NextPage = () => {
   return (
@@ -52,6 +53,7 @@ const Home: NextPage = () => {
 
       <MidSection/>
 
+      <Footer/>
     </div>
   )
 }

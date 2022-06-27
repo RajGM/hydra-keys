@@ -1,8 +1,19 @@
 import { useWallet } from '@solana/wallet-adapter-react'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import WalletsList from '../../components/WalletsList'
 
 const Manage: NextPage = () => {
+  const { connected } = useWallet()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (router.isReady && !connected) {
+      router.replace('/')
+    }
+  }, [router, connected])
+
   return (
     <div className="container mx-auto pt-8 px-6 flex flex-col justify-start items-start">
       <h1 className="text-2xl font-extrabold font-['Nunito',sans-serif]">Your Hydra Wallets</h1>
