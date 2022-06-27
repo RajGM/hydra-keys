@@ -22,7 +22,7 @@ const MembersTable = ({ members }: MemembersDetailsProps) => {
                   <td className="text-center">{member?.addedOn}</td>
                   <td className="text-center">{member?.shares}</td>
                   <td className="text-center">
-                    <button className={`btn w-8/12 sm:w-fit px-6 text-lg font-normal ${styles.distributeBtn}`}>
+                    <button className={`btn w-8/12 sm:w-fit px-6 text-lg font-normal border-none ${styles.distributeBtn}`}>
                       Distribute
                     </button>
                   </td>
