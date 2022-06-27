@@ -7,10 +7,12 @@ import styles from './../styles/Home.module.css'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useRouter } from 'next/router'
 import ConnectWalletModal from '../components/ConnectWalletModal'
+import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 
 const Home: NextPage = () => {
   const [showConnectWalletModal, setShowConnectWalletModal] = useState(false)
   const { publicKey } = useWallet()
+  const walletModal = useWalletModal()
   const router = useRouter()
 
   const handleGetStarted = () => {
@@ -19,7 +21,7 @@ const Home: NextPage = () => {
       router.push('/manage')
     } else {
       // Show connect wallet modal
-      setShowConnectWalletModal(true)
+      walletModal.setVisible(true)
     }
   }
 
