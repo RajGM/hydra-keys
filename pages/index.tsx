@@ -4,10 +4,20 @@ import HomeBannerSvg from '../assets/svg/homeBanner'
 import ArrowSvg from '../assets/svg/arrow'
 import styles from './../styles/Home.module.css'
 import { useWallet } from '@solana/wallet-adapter-react'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
   const { publicKey } = useWallet()
+  const router = useRouter()
+
+  const handleGetStarted = () => {
+    if (publicKey) {
+      // If user's wallet is connected
+      router.push('/manage')
+    } else {
+      alert('Connect Wallet!')
+    }
+  }
 
   return (
     <div>
@@ -32,17 +42,18 @@ const Home: NextPage = () => {
                 Keep Exploring{' '}
                 <ArrowSvg width="17px" height="17px" fill="#fff" />
               </button>
-              <Link href="/" passHref>
-                <button className="btn w-8/12	sm:w-fit btn-primary px-6 text-lg font-normal">
-                  Get Started{' '}
-                  <ArrowSvg
-                    width="17px"
-                    height="17px"
-                    fill="#fff"
-                    className={styles.heroButton}
-                  />
-                </button>
-              </Link>
+              <button
+                onClick={handleGetStarted}
+                className="btn w-8/12	sm:w-fit btn-primary px-6 text-lg font-normal"
+              >
+                Get Started{' '}
+                <ArrowSvg
+                  width="17px"
+                  height="17px"
+                  fill="#fff"
+                  className={styles.heroButton}
+                />
+              </button>
             </div>
           </div>
           <div className="w-full md:w-1/2 flex justify-end items-center absolute top-1/2 right-0 -translate-y-1/2 -z-10">
