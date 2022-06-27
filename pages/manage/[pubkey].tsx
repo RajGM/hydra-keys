@@ -11,8 +11,34 @@ export const getServerSideProps = async (context: any) => {
   const wallet = {
     pubKey: pubKey,
     name: 'MY WALLEEEEET',
-    members: [],
-    authority: '3CNWNUgsX6b43ciMGysughdxzQ5NT89dQ2shcNG3xtFr',
+    members: [
+      {
+        address: 'D4QYC..ioi',
+        addedOn: 'April 15, 2022',
+        shares: 23,
+      },
+      {
+        address: 'D4QYC..ioi',
+        addedOn: 'April 15, 2022',
+        shares: 23,
+      },
+      {
+        address: 'D4QYC..ioi',
+        addedOn: 'April 15, 2022',
+        shares: 23,
+      },
+      {
+        address: 'D4QYC...ioi',
+        addedOn: 'April 15, 2022',
+        shares: 23,
+      },
+      {
+        address: 'D4QYC...ioi',
+        addedOn: 'April 15, 2022',
+        shares: 23,
+      },
+    ],
+    authority: 'D4QYC...ioi',
     shares: 100,
     model: 'Wallet membership',
     acceptSPL: true,
