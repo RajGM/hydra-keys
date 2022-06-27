@@ -3,8 +3,12 @@ import Head from 'next/head'
 import HomeBannerSvg from '../assets/svg/homeBanner'
 import ArrowSvg from '../assets/svg/arrow'
 import styles from './../styles/Home.module.css'
+import { useWallet } from '@solana/wallet-adapter-react'
+import Link from 'next/link'
 
 const Home: NextPage = () => {
+  const { publicKey } = useWallet()
+
   return (
     <div>
       <Head>
@@ -28,15 +32,17 @@ const Home: NextPage = () => {
                 Keep Exploring{' '}
                 <ArrowSvg width="17px" height="17px" fill="#fff" />
               </button>
-              <button className="btn w-8/12	sm:w-fit btn-primary px-6 text-lg font-normal">
-                Get Started{' '}
-                <ArrowSvg
-                  width="17px"
-                  height="17px"
-                  fill="#fff"
-                  className={styles.heroButton}
-                />
-              </button>
+              <Link href="/" passHref>
+                <button className="btn w-8/12	sm:w-fit btn-primary px-6 text-lg font-normal">
+                  Get Started{' '}
+                  <ArrowSvg
+                    width="17px"
+                    height="17px"
+                    fill="#fff"
+                    className={styles.heroButton}
+                  />
+                </button>
+              </Link>
             </div>
           </div>
           <div className="w-full md:w-1/2 flex justify-end items-center absolute top-1/2 right-0 -translate-y-1/2 -z-10">
