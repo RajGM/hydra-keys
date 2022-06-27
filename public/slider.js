@@ -6,7 +6,7 @@
         this.sliderSize        = parseFloat( sliderSize )/100;
         this.slideSize         = parseFloat( slideSize )/100;
         this.animationDuration = parseFloat( animationDuration );
-        this.autoplayInterval  = parseFloat( autoplayInterval );
+        //this.autoplayInterval  = parseFloat( autoplayInterval );
 
     };
 
@@ -30,7 +30,7 @@
 
         this.btnRight             = newSlider.querySelector( '.circular-slider .wrapper .controls .controls__right' );
 
-        this.btnAutoplay          = newSlider.querySelector( '.circular-slider .wrapper .controls .controls__autoplay' );
+        //this.btnAutoplay          = newSlider.querySelector( '.circular-slider .wrapper .controls .controls__autoplay' );
 
         this.currentAngle         = 0;
 
@@ -40,12 +40,12 @@
 
         this.slidesHolder.style.transitionDuration = this.startSetup.animationDuration + 'ms';
         this.onResize();
-        this.setAutoplay();
+        //this.setAutoplay();
         this.setNav();
         this.addStyle();
 
         let _this = this;
-        this.btnAutoplay.onclick = function() {
+        /*this.btnAutoplay.onclick = function() {
 
             if( this.classList.contains( 'controls__autoplay_running' ) ) {
         
@@ -62,7 +62,7 @@
     
             }
     
-        }
+        }*/
 
     };
 
