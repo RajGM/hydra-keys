@@ -1,12 +1,15 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useState } from 'react'
 import HomeBannerSvg from '../assets/svg/homeBanner'
 import ArrowSvg from '../assets/svg/arrow'
 import styles from './../styles/Home.module.css'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useRouter } from 'next/router'
+import ConnectWalletModal from '../components/ConnectWalletModal'
 
 const Home: NextPage = () => {
+  const [showConnectWalletModal, setShowConnectWalletModal] = useState(false)
   const { publicKey } = useWallet()
   const router = useRouter()
 
@@ -16,6 +19,7 @@ const Home: NextPage = () => {
       router.push('/manage')
     } else {
       // Show connect wallet modal
+      setShowConnectWalletModal(true)
     }
   }
 
@@ -64,6 +68,11 @@ const Home: NextPage = () => {
             />
           </div>
         </div>
+        {showConnectWalletModal && (
+          <ConnectWalletModal
+            closeModal={() => setShowConnectWalletModal(false)}
+          />
+        )}
       </main>
     </div>
   )
