@@ -7,6 +7,7 @@ import styles from './../styles/Home.module.css'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useRouter } from 'next/router'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
+import Footer from '../components/Footer'
 
 const Home: NextPage = () => {
   const { publicKey } = useWallet()
@@ -69,6 +70,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
