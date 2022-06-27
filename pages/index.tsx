@@ -3,8 +3,26 @@ import Head from 'next/head'
 import HomeBannerSvg from '../assets/svg/homeBanner'
 import ArrowSvg from '../assets/svg/arrow'
 import styles from './../styles/Home.module.css'
+import { useWallet } from '@solana/wallet-adapter-react'
+import { useRouter } from 'next/router'
+import { useWalletModal } from '@solana/wallet-adapter-react-ui'
+import Footer from '../components/Footer'
 
 const Home: NextPage = () => {
+  const { publicKey } = useWallet()
+  const walletModal = useWalletModal()
+  const router = useRouter()
+
+  const handleGetStarted = () => {
+    if (publicKey) {
+      // If user's wallet is connected
+      router.push('/manage')
+    } else {
+      // Show connect wallet modal
+      walletModal.setVisible(true)
+    }
+  }
+
   return (
     <div>
       <Head>
@@ -28,7 +46,10 @@ const Home: NextPage = () => {
                 Keep Exploring{' '}
                 <ArrowSvg width="17px" height="17px" fill="#fff" />
               </button>
-              <button className="btn w-8/12	sm:w-fit btn-primary px-6 text-lg font-normal">
+              <button
+                onClick={handleGetStarted}
+                className="btn w-8/12	sm:w-fit btn-primary px-6 text-lg font-normal"
+              >
                 Get Started{' '}
                 <ArrowSvg
                   width="17px"
@@ -48,6 +69,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
