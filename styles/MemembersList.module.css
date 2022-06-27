@@ -45,3 +45,33 @@
 [data-theme='dark'] .th {
   border-bottom: 0.5px dashed #e6e6e6; 
 }
+
+/*width*/
+.membersTableBg::-webkit-scrollbar {
+  width: 8px;
+}
+
+/*track color*/
+.membersTableBg::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.membersTableBg::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 5px;
+}
+.membersTableBg::-webkit-scrollbar-thumb:hover {
+  background: rgb(92, 91, 91);
+}
+
+/* Handle */
+[data-theme='dark'] .membersTableBg::-webkit-scrollbar-thumb {
+  background: #443d93;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+[data-theme='dark'] .membersTableBg::-webkit-scrollbar-thumb:hover {
+  background: #4f47a7;
+}
