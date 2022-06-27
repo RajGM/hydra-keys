@@ -1,15 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-
 import HomeCarousel from '../components/HomeCarousel'
 import HeroSection from '../components/HeroSection'
-import HomeBannerSvg from '../assets/svg/homeBanner'
-import ArrowSvg from '../assets/svg/arrow'
-import styles from './../styles/Home.module.css'
+import Footer from '../components/Footer'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { useRouter } from 'next/router'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
-import Footer from '../components/Footer'
+
 
 
 const Home: NextPage = () => {
