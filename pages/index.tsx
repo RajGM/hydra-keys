@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
 import HomeBannerSvg from '../assets/svg/homeBanner'
 import ArrowSvg from '../assets/svg/arrow'
 import styles from './../styles/Home.module.css'

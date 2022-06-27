@@ -11,6 +11,7 @@ const FourOhFour: NextPage = () => {
         width="150px"
         height="150px"
         className="shadow-2xl"
+        alt="Earth 404 Image"
       />
       <h1 className="w-full text-center md:text-center text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-primary dark:text-white">
         404
