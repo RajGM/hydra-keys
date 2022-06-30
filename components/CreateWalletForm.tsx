@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { selectCluster } from '../redux/features/wallet/walletSlice'
 import FormStateAlert, { FormState } from './FormStateAlert'
+import { useRouter } from 'next/router'
 
 interface FormValues {
   name: string
@@ -30,6 +31,8 @@ const CreateWalletForm = () => {
     pubKeySPL: '',
   }
 
+  //notes 1
+  const router = useRouter();
   const { connection } = useConnection()
   const wallet = useAnchorWallet()
   const cluster = useAppSelector(selectCluster)
@@ -63,7 +66,7 @@ const CreateWalletForm = () => {
       if (values.acceptSPL) {
         const ixSPL = await fanoutSdk.initializeFanoutForMintInstructions({
           fanout: fanoutPubkey,
-          mint: new PublicKey(values.pubKeySPL)
+          mint: new PublicKey(values.pubKeySPL),
         })
         tx.add(...ixSPL.instructions)
       }
@@ -89,12 +92,16 @@ const CreateWalletForm = () => {
           // TODO: Include SPL token public key
           // TODO: Include mint public key for token membership model
           totalShares: values.shares,
-          cluster
+          cluster,
         }),
       })
 
       if (res.status === 200) {
         setFormState('success')
+
+        //redirect to manage page
+        
+
       } else {
         const json = await res.json()
         setFormState('error')
