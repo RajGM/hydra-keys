@@ -9,6 +9,7 @@ import {
 import AddMemberModal from './AddMemberModal'
 import MembersTable from './MembersTable'
 import styles from '../styles/MemembersList.module.css'
+import Link from 'next/link'
 
 type WalletDetailsProps = {
   wallet: any
@@ -36,11 +37,13 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           </div>
         </div>
       </div>
-      <button className="self-start flex gap-2 items-center text-lg btn">
-        {' '}
+
+      <Link href ="/manage">
+      <button  className="self-start flex gap-2 items-center text-lg btn dark:bg-secondary dark:text-secondary-content">
         <FaArrowLeft />
-        <p className=''>Other Wallets</p>
+        <p className="">Other Wallets</p>
       </button>
+      </Link>
 
       <div className="flex justify-between relative items-end w-full">
         <div className="group">
