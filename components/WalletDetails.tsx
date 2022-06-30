@@ -1,13 +1,14 @@
 import { FaBalanceScaleLeft, FaCog, FaUserPlus, FaUsers } from 'react-icons/fa'
 import AddMemberModal from './AddMemberModal'
-import MembersTable from "./MembersTable";
+import MembersTable from './MembersTable'
 import styles from '../styles/MemembersList.module.css'
 
 type WalletDetailsProps = {
   wallet: any
+  members: any
 }
 
-const WalletDetails = ({ wallet }: WalletDetailsProps) => {
+const WalletDetails = ({ wallet, members }: WalletDetailsProps) => {
   return (
     <div className="w-full flex flex-col gap-8">
       <div className="flex justify-between flex-wrap gap-5 md:gap-0 pb-8">
@@ -15,7 +16,7 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
           <p className="w-full text-3xl md:text-4xl font-bold text-primary dark:text-white">
             #{wallet.name}
           </p>
-          <span className="break-words">{wallet.pubKey}</span>
+          <span className="break-words">{wallet.pubkey}</span>
         </div>
 
         <div className=" w-full md:w-1/3 flex justify-center md:justify-end">
@@ -52,13 +53,19 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
             <p className="text-xl font-bold">Members</p>
           </div>
 
-          <p>Total shares: {wallet.shares}</p>
+          <p>Total shares: {wallet.totalShares}</p>
         </div>
         {/*add members table here */}
-        <div className={`card-bordered shadow-xl w-full rounded h-80 overflow-y-scroll ${styles.membersTableBg} ${styles.borderColor}`}>
-          {wallet.members.length > 0 ? (<MembersTable members={wallet?.members} />): (<p className="text-center text-xl font-bold">No members please add new members</p>)}
-          {/* <MembersTable member={wallet.members} /> */}
-          
+        <div
+          className={`card-bordered shadow-xl w-full rounded h-80 overflow-y-scroll ${styles.membersTableBg} ${styles.borderColor}`}
+        >
+          {members.length > 0 ? (
+            <MembersTable members={members} />
+          ) : (
+            <p className="text-center text-xl font-bold">
+              No members please add new members
+            </p>
+          )}
         </div>
       </div>
 
@@ -73,7 +80,7 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
 
         <div className="flex justify-between">
           <p>Membership model: </p>
-          <p>{wallet.model}</p>
+          <p>{wallet.memberShipType}</p>
         </div>
 
         <div className="flex w-full justify-between flex-wrap gap-y-5">
@@ -84,12 +91,13 @@ const WalletDetails = ({ wallet }: WalletDetailsProps) => {
             </p>
           </div>
 
-          {wallet.acceptSPL ? (
+          {/* Commenting for now till we have SPL pk in backend  */}
+          {/* {wallet.acceptSPL ? (
             <div className="flex flex-col lg:flex-row justify-between w-full md:w-1/2">
               <p className="mr-3">SPL public key: </p>
               <p className="text-primary break-words"> {wallet.pubKeySPL}</p>
             </div>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
 
