@@ -31,8 +31,7 @@ const CreateWalletForm = () => {
     pubKeySPL: '',
   }
 
-  //notes 1
-  const router = useRouter();
+  const router = useRouter()
   const { connection } = useConnection()
   const wallet = useAnchorWallet()
   const cluster = useAppSelector(selectCluster)
@@ -85,7 +84,7 @@ const CreateWalletForm = () => {
         body: JSON.stringify({
           tx: txSigned.serialize().toString('base64'),
           name: values.name,
-          pubkey: fanoutPubkey,
+          pubkey: fanoutPubkey.toBase58(),
           authority: wallet.publicKey.toBase58(),
           memberShipType: values.model,
           acceptSPL: values.acceptSPL,
@@ -100,8 +99,7 @@ const CreateWalletForm = () => {
         setFormState('success')
 
         //redirect to manage page
-        
-
+        router.push(`/manage/${fanoutPubkey.toBase58()}`)
       } else {
         const json = await res.json()
         setFormState('error')
