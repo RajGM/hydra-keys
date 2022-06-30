@@ -5,12 +5,13 @@ import styles from '../styles/NavbarLink.module.css'
 
 type NavbarLinkProps = {
   text: string,
-  href: string
+  href: string,
+  isActive: Function
 }
 
-const NavbarLink = ({ text, href }: NavbarLinkProps) => {
+const NavbarLink = ({ text, href, isActive }: NavbarLinkProps) => {
   const router = useRouter()
-  const activeStyle = router.pathname === href ? styles.halfBorderBottom : ''
+  const activeStyle = isActive(router.pathname,href) ? styles.halfBorderBottom : ''
 
   return (
     <Link href={href}>
