@@ -3,6 +3,7 @@ import { useRef } from 'react'
 
 interface FormValues {
   pubKey: string
+  shares: number
 }
 
 const AddMemberModal = () => {
@@ -10,11 +11,13 @@ const AddMemberModal = () => {
 
   const initialValues = {
     pubKey: '',
+    shares: 0
   }
 
   const onSubmit = (values: any) => {
     console.log('submitted', values)
     // add the wallet member here
+
     toggleRef.current!.checked = false
   }
 
@@ -45,7 +48,7 @@ const AddMemberModal = () => {
         />
         <div className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
-            <h3 className="font-bold text-lg pb-5">
+            <h3 className="font-bold text-lg pb-2">
               Add a member to your Wallet
             </h3>
             <label className="label">Public key:</label>
@@ -55,6 +58,14 @@ const AddMemberModal = () => {
               className="input input-bordered w-full"
               {...formik.getFieldProps('pubKey')}
             />
+            <label className="label">Shares:</label>
+            <input
+              type="number"
+              placeholder="Enter the member's shares"
+              className="input input-bordered w-full"
+              {...formik.getFieldProps('shares')}
+            />
+
             {formik.errors.pubKey && formik.touched.pubKey ? (
               <div className="text-red-500">{formik.errors.pubKey}</div>
             ) : null}
