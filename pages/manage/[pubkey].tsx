@@ -5,10 +5,7 @@ import { useAppSelector } from '../../hooks/useAppSelector'
 import { selectCluster } from '../../redux/features/wallet/walletSlice'
 import useSWR from 'swr'
 import { useProtectRoute } from '../../hooks/useProtectRoute'
-
-interface Props {
-  wallet: any
-}
+import { useRouter } from 'next/router'
 
 const fetcher = (key: string) => {
   if (key) {
@@ -19,16 +16,9 @@ const fetcher = (key: string) => {
 const WalletDetailsPage: NextPage = () => {
   const router = useRouter()
   const pubKey = router.query.pubkey
-  const { connected } = useWallet()
   const cluster = useAppSelector(selectCluster)
 
   useProtectRoute()
-
-  useEffect(() => {
-    if (router.isReady && !connected) {
-      router.replace('/')
-    }
-  }, [router, connected])
 
   const endpoint = pubKey ? `/api/wallets/${pubKey}?cluster=${cluster}` : ''
   const { data, error } = useSWR(endpoint, fetcher)
