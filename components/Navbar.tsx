@@ -45,8 +45,8 @@ const Navbar = ({ drawerId }: NavbarProps) => {
             publicKey ? 'sm:flex' : 'sm:hidden'
           } flex-row gap-6 justify-end items-center`}
         >
-          <NavbarLink href="/create" text="Create" />
-          <NavbarLink href="/manage" text="Manage" />
+          <NavbarLink isActive={(pathname,href) => pathname === href } href="/create" text="Create" />
+          <NavbarLink isActive={(pathname,href) => '/' + pathname.split('/')[1] === href }  href="/manage" text="Manage" /> 
         </div>
         <ThemeToggle />
         <div className={styles.walletBtnParent}>

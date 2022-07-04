@@ -1,7 +1,15 @@
-import { FaBalanceScaleLeft, FaCog, FaUserPlus, FaUsers } from 'react-icons/fa'
+import {
+  FaArrowLeft,
+  FaBackward,
+  FaBalanceScaleLeft,
+  FaCog,
+  FaUserPlus,
+  FaUsers,
+} from 'react-icons/fa'
 import AddMemberModal from './AddMemberModal'
 import MembersTable from './MembersTable'
 import styles from '../styles/MemembersList.module.css'
+import Link from 'next/link'
 
 type WalletDetailsProps = {
   wallet: any
@@ -11,7 +19,7 @@ type WalletDetailsProps = {
 const WalletDetails = ({ wallet, members }: WalletDetailsProps) => {
   return (
     <div className="w-full flex flex-col gap-8">
-      <div className="flex justify-between flex-wrap gap-5 md:gap-0 pb-8">
+      <div className="flex justify-between flex-wrap gap-5 md:gap-0 pb-2">
         <div className="w-full md:w-1/2 text-center md:text-left">
           <p className="w-full text-3xl md:text-4xl font-bold text-primary dark:text-white">
             #{wallet.name}
@@ -30,6 +38,13 @@ const WalletDetails = ({ wallet, members }: WalletDetailsProps) => {
           </div>
         </div>
       </div>
+
+      <Link href ="/manage">
+      <button  className="self-start flex gap-2 items-center text-lg btn dark:bg-secondary dark:text-secondary-content">
+        <FaArrowLeft />
+        <p className="">Other Wallets</p>
+      </button>
+      </Link>
 
       <div className="flex justify-between relative items-end w-full">
         <div className="group">
