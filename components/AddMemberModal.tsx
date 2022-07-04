@@ -22,7 +22,7 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
 
   const initialValues = {
     pubkey: '',
-    shares: 0,
+    shares: '',
   }
 
   const { connection } = useConnection()
