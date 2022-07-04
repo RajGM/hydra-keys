@@ -33,7 +33,7 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
   const [errorMsg, setErrorMsg] = useState('')
   const [logs, setLogs] = useState([])
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: any, { resetForm }) => {
     console.log('submitted', values)
     // add the wallet member here
     if (!wallet) {
@@ -92,7 +92,9 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
     } catch (error: any) {
       setFormState('error')
       setErrorMsg(`Failed to add member: ${error.message}`)
+        
     }
+    resetForm();
   }
 
   const validate = (values: any) => {
