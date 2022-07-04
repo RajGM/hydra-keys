@@ -1,7 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
-import {clusterApiUrl, Connection} from "@solana/web3.js";
-import * as Cluster from "cluster";
+import {
+  clusterApiUrl,
+  Connection,
+  SendTransactionError,
+} from '@solana/web3.js'
+import * as Cluster from 'cluster'
+import { sendTransaction } from '@metaplex/js/lib/actions'
 
 const prisma = new PrismaClient()
 
@@ -61,12 +66,33 @@ export default async function handler(
       })
 
       // Transaction failed
-      if (result.value.err) return res.status(500).json(`Transaction failed: ${result.value.err.toString()}`)
-
+      if (result.value.err) {
+        throw {
+          response: {
+            msg: `Transaction confirmation failed: ${result.value.err.toString()}`,
+          },
+        }
+      }
 
       return res.status(200).json(updateWallet)
-
     } catch (e: any) {
+      if (e instanceof SendTransactionError) {
+        await prisma.wallet.update({
+          where: {
+            cluster_pubkey: {
+              pubkey: walletPubKey,
+              cluster: cluster,
+            },
+          },
+          data: {
+            acceptSPL: false,
+            splToken: undefined,
+          },
+        })
+
+        return res.status(500).json({ msg: e.message, logs: e.logs })
+      }
+
       return res.status(400).json(e.meta.cause)
     }
   } else {
