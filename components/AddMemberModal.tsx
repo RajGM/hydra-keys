@@ -1,10 +1,16 @@
-import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react'
+import {
+  AnchorWallet,
+  useAnchorWallet,
+  useConnection,
+} from '@solana/wallet-adapter-react'
 import { FormikErrors, useFormik } from 'formik'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { selectCluster } from '../redux/features/wallet/walletSlice'
+import { useState } from 'react'
 import { useRef } from 'react'
 import { FanoutClient } from '@glasseaters/hydra-sdk'
 import { PublicKey, Transaction } from '@solana/web3.js'
+import FormStateAlert, { FormState } from './FormStateAlert'
 
 type AddMemberModalProps = {
   hydraWallet: any
@@ -27,14 +33,21 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
   const cluster = useAppSelector(selectCluster)
   const wallet = useAnchorWallet()
 
+  const [formState, setFormState] = useState('idle' as FormState)
+  const [errorMsg, setErrorMsg] = useState('')
+  const [logs, setLogs] = useState([])
+
   const onSubmit = async (values: any) => {
     console.log('submitted', values)
     // add the wallet member here
     if (!wallet) {
+      setFormState('error')
+      setErrorMsg('Please connect your wallet!')
       return
     }
 
     try {
+      setLogs([])
       const fanoutSdk = new FanoutClient(connection, wallet)
 
       // Prepare transaction
@@ -67,10 +80,20 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
       })
 
       if (res.status === 200) {
+        toggleRef.current!.checked = false
+        setFormState('success')
       } else {
         const json = await res.json()
+        setFormState('error')
+        setErrorMsg(json.msg)
+        setLogs(json.logs)
       }
-    } catch (error: any) {}
+
+   
+    } catch (error: any) {
+      setFormState('error')
+      setErrorMsg(`Failed to add member: ${error.message}`)
+    }
   }
 
   const validate = (values: any) => {
@@ -133,7 +156,15 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
               <div className="text-red-500">{formik.errors.pubkey}</div>
             ) : null}
 
-            <div className="mt-5"></div>
+            <div className="mt-4">
+              <FormStateAlert
+                state={formik.isSubmitting ? 'submitting' : formState}
+                submittingMsg="Creating Hydra Wallet..."
+                successMsg="Successfully created Hydra Wallet!"
+                errorMsg={errorMsg}
+                logs={logs}
+              />
+            </div>
 
             <div className="flex w-full justify-end gap-4">
               <div className="modal-action">
