@@ -1,42 +1,82 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Membership, PrismaClient } from '@prisma/client';
-import { MembershipModel } from '@glasseaters/hydra-sdk';
+import { Membership, PrismaClient } from '@prisma/client'
+import { MembershipModel } from '@glasseaters/hydra-sdk'
+import { clusterApiUrl, Connection } from '@solana/web3.js'
 
-const prisma=new PrismaClient();
+const prisma = new PrismaClient()
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === 'POST') {
-    console.log("post");
-    const body=req.body;
-    try{
+    /* Flow:
+     *   - Validate parameters
+     *   - Save member into database
+     *   - Forward serialized transaction
+     *   - If transaction fails, remove member from database
+     *   - Otherwise, return saved member data
+     */
+
+    const {
+      tx, // Serialzied  transaction
+      memberPubkey,
+      shareCount,
+      walletPubKey,
+      cluster,
+    } = req.body
+
+    let insertedIntoDb = false
+    let sentTransaction = false
+    try {
       //Body for new user should be as follows:
       //memberPubkey
       //shareCount
-      //walletPubkey 
+      //walletPubkey
 
-      const user = await prisma.membership.create({
-        data:{
+      const savedWallet = await prisma.membership.create({
+        data: {
+          memberPubkey: memberPubkey,
+          shareCount: shareCount,
+          walletPubkey: walletPubKey,
+          cluster: cluster,
+        },
+      })
+      insertedIntoDb = true
+      // Forward serialized transaction
+      const connection = new Connection(clusterApiUrl(cluster), 'confirmed')
+      const signature = await connection.sendEncodedTransaction(tx)
+      const result = await connection.confirmTransaction({
+        ...(await connection.getLatestBlockhash()),
+        signature,
+      })
 
-          memberPubkey:body.memberPubkey,
-          shareCount:body.shareCount,
-          walletPubkey:body.walletPubkey,
-          cluster:body.cluster,
-          wallet:body.wallet
-
+      // Transaction failed?
+      if (result.value.err) {
+        throw {
+          response: {
+            msg: `Transaction failed: ${result.value.err.toString()}`,
+          },
         }
-      });
-      console.log(user);
-      console.log(body);
-    }
-    catch{
-      console.log("error");
-      return;
-    }
-    return;
-  } else {
-    res.status(200).json({found:false});
-    return;
-  }
+      }
 
+      sentTransaction = true
+      res.status(200).json({ data: savedWallet })
+    } catch (error: any) {
+      if (insertedIntoDb && !sentTransaction) {
+        await prisma.membership.delete({
+          where: {
+            cluster_walletPubkey_memberPubkey: {
+              memberPubkey: memberPubkey,
+              walletPubkey: walletPubKey,
+              cluster: cluster,
+            },
+          },
+        })
+      }
+    }
+  } else {
+    res.status(405).json({ msg: 'Only POST requests are allowed' })
+  }
 }

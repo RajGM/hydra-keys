@@ -1,24 +1,81 @@
+import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react'
 import { FormikErrors, useFormik } from 'formik'
+import { useAppSelector } from '../hooks/useAppSelector'
+import { selectCluster } from '../redux/features/wallet/walletSlice'
+
 import { useRef } from 'react'
+import { FanoutClient } from '@glasseaters/hydra-sdk'
+import { Transaction } from '@solana/web3.js'
+
+type AddMemberModalProps = {
+  wallet: any
+}
 
 interface FormValues {
   pubKey: string
   shares: number
 }
 
-const AddMemberModal = () => {
+const AddMemberModal = ({ wallet }: AddMemberModalProps) => {
   let toggleRef = useRef<HTMLInputElement>(null)
 
   const initialValues = {
     pubKey: '',
-    shares: 0
+    shares: 0,
   }
 
-  const onSubmit = (values: any) => {
+  const { connection } = useConnection()
+  const cluster = useAppSelector(selectCluster)
+  const walletPub = useAnchorWallet()
+  const onSubmit = async (values: any) => {
     console.log('submitted', values)
     // add the wallet member here
+    if (!wallet) {
+      return
+    }
 
-    toggleRef.current!.checked = false
+    try {
+      const fanoutSdk = new FanoutClient(connection, wallet)
+
+      // Prepare transaction
+      const tx = new Transaction()
+      const ixAddMember = await fanoutSdk.addMemberWalletInstructions({
+        fanout: wallet.pubKey,
+        membershipKey: values.pubKey,
+        shares: 10,
+      })
+      tx.add(...ixAddMember.instructions)
+
+      // Sign transaction using user's wallet
+      tx.recentBlockhash = (await connection.getLatestBlockhash()).blockhash
+      tx.feePayer = wallet.publicKey
+      const txSigned = await wallet.signTransaction(tx)
+
+      // Send API request
+      const res = await fetch('api/addUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tx: txSigned.serialize().toString('base64'),
+          memberPubkey: values.pubKey.toBase58(),
+          shareCount: values.shares,
+          walletPubKey: wallet.pubKey.toBase58(),
+          cluster,
+        }),
+      })
+
+      if (res.status === 200) {
+        console.log('success')
+        //redirect to manage page
+      } else {
+        const json = await res.json()
+      }
+      toggleRef.current!.checked = false
+    } catch (error: any) {
+      console.log('Failed to add member')
+    }
   }
 
   const validate = (values: any) => {
@@ -72,7 +129,13 @@ const AddMemberModal = () => {
 
             <div className="flex w-full justify-end gap-4">
               <div className="modal-action">
-                <button type="submit" className="btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={
+                    !(formik.dirty && formik.isValid) || formik.isSubmitting
+                  }
+                >
                   Add
                 </button>
               </div>

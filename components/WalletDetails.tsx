@@ -115,7 +115,7 @@ const WalletDetails = ({ wallet, members }: WalletDetailsProps) => {
         </div>
       </div>
 
-      <AddMemberModal />
+      <AddMemberModal wallet = {wallet} />
     </div>
   )
 }
