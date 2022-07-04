@@ -48,7 +48,7 @@ const CreateWalletForm = () => {
 
     try {
       const fanoutSdk = new FanoutClient(connection, wallet)
-
+      console.log(values)
       // Calculate fanout public key
       const [fanoutPubkey] = await FanoutClient.fanoutKey(values.name)
 

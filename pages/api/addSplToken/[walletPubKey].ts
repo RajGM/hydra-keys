@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
+import {clusterApiUrl, Connection} from "@solana/web3.js";
+import * as Cluster from "cluster";
 
 const prisma = new PrismaClient()
 
@@ -48,7 +50,22 @@ export default async function handler(
           splToken,
         },
       })
+
+      // Forward serialized transaction
+      // @ts-ignore
+      const connection = new Connection(clusterApiUrl(cluster), 'confirmed')
+      const signature = await connection.sendEncodedTransaction(tx)
+      const result = await connection.confirmTransaction({
+        ...(await connection.getLatestBlockhash()),
+        signature,
+      })
+
+      // Transaction failed
+      if (result.value.err) return res.status(500).json(`Transaction failed: ${result.value.err.toString()}`)
+
+
       return res.status(200).json(updateWallet)
+
     } catch (e: any) {
       return res.status(400).json(e.meta.cause)
     }
