@@ -1,8 +1,4 @@
-import {
-  AnchorWallet,
-  useAnchorWallet,
-  useConnection,
-} from '@solana/wallet-adapter-react'
+import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react'
 import { FormikErrors, useFormik } from 'formik'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { selectCluster } from '../redux/features/wallet/walletSlice'
@@ -80,16 +76,19 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
       })
 
       if (res.status === 200) {
-        toggleRef.current!.checked = false
         setFormState('success')
+
+        //wait 2 seconds before closing the form and reload the page
+        setTimeout(function () {
+          toggleRef.current!.checked = false
+          location.reload()
+        }, 3200)
       } else {
         const json = await res.json()
         setFormState('error')
         setErrorMsg(json.msg)
         setLogs(json.logs)
       }
-
-   
     } catch (error: any) {
       setFormState('error')
       setErrorMsg(`Failed to add member: ${error.message}`)
@@ -159,8 +158,8 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
             <div className="mt-4">
               <FormStateAlert
                 state={formik.isSubmitting ? 'submitting' : formState}
-                submittingMsg="Creating Hydra Wallet..."
-                successMsg="Successfully created Hydra Wallet!"
+                submittingMsg="Adding Member to Hydra Wallet..."
+                successMsg="Successfully added member!"
                 errorMsg={errorMsg}
                 logs={logs}
               />
