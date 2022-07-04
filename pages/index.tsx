@@ -7,8 +7,6 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import { useRouter } from 'next/router'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 
-
-
 const Home: NextPage = () => {
   const { publicKey } = useWallet()
   const walletModal = useWalletModal()
@@ -31,11 +29,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
-      <HeroSection />
+      <HeroSection onHandleGetStarted={handleGetStarted} />
       <HomeCarousel />
       <Footer />
-
     </div>
   )
 }
