@@ -2,31 +2,31 @@ import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react'
 import { FormikErrors, useFormik } from 'formik'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { selectCluster } from '../redux/features/wallet/walletSlice'
-
 import { useRef } from 'react'
 import { FanoutClient } from '@glasseaters/hydra-sdk'
-import { Transaction } from '@solana/web3.js'
+import { PublicKey, Transaction } from '@solana/web3.js'
 
 type AddMemberModalProps = {
-  wallet: any
+  hydraWallet: any
 }
 
 interface FormValues {
-  pubKey: string
+  pubkey: string
   shares: number
 }
 
-const AddMemberModal = ({ wallet }: AddMemberModalProps) => {
+const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
   let toggleRef = useRef<HTMLInputElement>(null)
 
   const initialValues = {
-    pubKey: '',
+    pubkey: '',
     shares: 0,
   }
 
   const { connection } = useConnection()
   const cluster = useAppSelector(selectCluster)
-  const walletPub = useAnchorWallet()
+  const wallet = useAnchorWallet()
+
   const onSubmit = async (values: any) => {
     console.log('submitted', values)
     // add the wallet member here
@@ -40,9 +40,9 @@ const AddMemberModal = ({ wallet }: AddMemberModalProps) => {
       // Prepare transaction
       const tx = new Transaction()
       const ixAddMember = await fanoutSdk.addMemberWalletInstructions({
-        fanout: wallet.pubKey,
-        membershipKey: values.pubKey,
-        shares: 10,
+        fanout: new PublicKey(hydraWallet.pubkey),
+        membershipKey: new PublicKey(values.pubkey),
+        shares: values.shares,
       })
       tx.add(...ixAddMember.instructions)
 
@@ -51,41 +51,46 @@ const AddMemberModal = ({ wallet }: AddMemberModalProps) => {
       tx.feePayer = wallet.publicKey
       const txSigned = await wallet.signTransaction(tx)
 
-      // Send API request
-      const res = await fetch('api/addUser', {
+      //Send API request
+      const res = await fetch('/api/addUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          tx: txSigned.serialize().toString('base64'),
-          memberPubkey: values.pubKey.toBase58(),
+          tx: txSigned?.serialize().toString('base64'),
+          memberPubkey: values.pubkey,
           shareCount: values.shares,
-          walletPubKey: wallet.pubKey.toBase58(),
+          walletPubKey: hydraWallet.pubkey,
           cluster,
         }),
       })
 
       if (res.status === 200) {
-        console.log('success')
-        //redirect to manage page
       } else {
         const json = await res.json()
       }
-      toggleRef.current!.checked = false
-    } catch (error: any) {
-      console.log('Failed to add member')
-    }
+    } catch (error: any) {}
   }
 
   const validate = (values: any) => {
     let errors: FormikErrors<FormValues> = {}
 
-    if (!values.pubKey) {
-      errors.pubKey = 'This field is required'
+    if (!values.pubkey) {
+      errors.pubkey = 'This field is required'
+    }
+
+    if (!values.shares) {
+      errors.shares = 'Enter a valid number of shares'
     }
 
     return errors
+  }
+
+  const checkNumeric = (event: any) => {
+    if (event.key == '.') {
+      event.preventDefault()
+    }
   }
 
   const formik = useFormik({
@@ -113,19 +118,22 @@ const AddMemberModal = ({ wallet }: AddMemberModalProps) => {
               type="text"
               placeholder="Enter the member's public key"
               className="input input-bordered w-full"
-              {...formik.getFieldProps('pubKey')}
+              {...formik.getFieldProps('pubkey')}
             />
             <label className="label">Shares:</label>
             <input
               type="number"
               placeholder="Enter the member's shares"
               className="input input-bordered w-full"
+              onKeyPress={(event) => checkNumeric(event)}
               {...formik.getFieldProps('shares')}
             />
 
-            {formik.errors.pubKey && formik.touched.pubKey ? (
-              <div className="text-red-500">{formik.errors.pubKey}</div>
+            {formik.errors.pubkey && formik.touched.pubkey ? (
+              <div className="text-red-500">{formik.errors.pubkey}</div>
             ) : null}
+
+            <div className="mt-5"></div>
 
             <div className="flex w-full justify-end gap-4">
               <div className="modal-action">
