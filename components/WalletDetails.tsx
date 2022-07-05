@@ -59,13 +59,13 @@ const WalletDetails = ({ wallet, members }: WalletDetailsProps) => {
       </div>
 
       <div>
-        <div className="flex justify-between relative items-end w-full">
+        <div className="flex justify-between relative items-end w-full mb-6">
           <div className="group">
             <div className="absolute transition-opacity duration-300 opacity-0 group-hover:opacity-40 flex justify-center h-full items-center -left-6">
               <FaUsers className="text-white" />
             </div>
 
-            <p className="text-xl font-bold">Members</p>
+            <p className="text-xl font-bold ">Members</p>
           </div>
 
           <p>Total shares: {wallet.totalShares}</p>
@@ -115,7 +115,7 @@ const WalletDetails = ({ wallet, members }: WalletDetailsProps) => {
         </div>
       </div>
 
-      <AddMemberModal />
+      <AddMemberModal hydraWallet = {wallet} />
     </div>
   )
 }
