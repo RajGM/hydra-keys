@@ -132,8 +132,8 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
           className="modal-toggle"
           ref={toggleRef}
         />
-        <div className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
+        <label htmlFor='add-member-modal' className="modal modal-bottom sm:modal-middle">
+          <label htmlFor='' className="modal-box">
             <h3 className="font-bold text-lg pb-2">
               Add a member to your Wallet
             </h3>
@@ -191,8 +191,8 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
                 </label>
               </div>
             </div>
-          </div>
-        </div>
+          </label>
+        </label>
       </form>
     </div>
   )
