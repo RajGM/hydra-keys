@@ -7,6 +7,7 @@ import { useRef } from 'react'
 import { FanoutClient } from '@glasseaters/hydra-sdk'
 import { PublicKey, Transaction } from '@solana/web3.js'
 import FormStateAlert, { FormState } from './FormStateAlert'
+import { useSWRConfig } from 'swr'
 
 type AddMemberModalProps = {
   hydraWallet: any
@@ -19,6 +20,7 @@ interface FormValues {
 
 const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
   let toggleRef = useRef<HTMLInputElement>(null)
+  const { mutate } = useSWRConfig()
 
   const initialValues = {
     pubkey: '',
@@ -77,12 +79,8 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
 
       if (res.status === 200) {
         setFormState('success')
-
-        //wait 2 seconds before closing the form and reload the page
-        setTimeout(function () {
-          toggleRef.current!.checked = false
-          location.reload()
-        }, 3200)
+        // Revalidate wallet details cache
+        mutate(`/api/wallets/${hydraWallet.pubkey}?cluster=${cluster}`)
       } else {
         const json = await res.json()
         setFormState('error')
