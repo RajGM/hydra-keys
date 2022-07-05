@@ -80,8 +80,11 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
       if (res.status === 200) {
         setFormState('success')
         // Revalidate wallet details cache
-        mutate(`/api/wallets/${hydraWallet.pubkey}?cluster=${cluster}`)
+        setTimeout(function () {
+          mutate(`/api/wallets/${hydraWallet.pubkey}?cluster=${cluster}`)
+        }, 1000)
       } else {
+        mutate(`/api/wallets/${hydraWallet.pubkey}?cluster=${cluster}`)
         const json = await res.json()
         setFormState('error')
         setErrorMsg(json.msg)
