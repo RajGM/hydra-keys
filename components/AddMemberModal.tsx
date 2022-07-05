@@ -90,9 +90,8 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
     } catch (error: any) {
       setFormState('error')
       setErrorMsg(`Failed to add member: ${error.message}`)
-        
     }
-    resetForm();
+    resetForm()
   }
 
   const validate = (values: any) => {
@@ -178,7 +177,13 @@ const AddMemberModal = ({ hydraWallet }: AddMemberModalProps) => {
                 </button>
               </div>
               <div className="modal-action">
-                <label htmlFor="add-member-modal" className="btn">
+                <label
+                  className="btn"
+                  htmlFor="add-member-modal"
+                  onClick={() => {
+                    setFormState('idle' as FormState)
+                  }}
+                >
                   Cancel
                 </label>
               </div>
