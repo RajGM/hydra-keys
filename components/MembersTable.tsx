@@ -19,7 +19,9 @@ const MembersTable = ({ members }: MemembersDetailsProps) => {
         {members.map((member: any, key: any) => (
           <tr className={styles.membersList} key={key}>
             <th>{member?.memberPubkey}</th>
-            <td className="text-center">{member?.createdAt}</td>
+            <td className="text-center">
+              {new Date(Date.parse(member?.createdAt)).toLocaleString()}
+            </td>
             <td className="text-center">{member?.shareCount}</td>
             <td className="text-center">
               <button
