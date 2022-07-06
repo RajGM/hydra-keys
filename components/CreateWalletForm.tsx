@@ -185,6 +185,7 @@ const CreateWalletForm = () => {
           </label>
           <input
             type="number"
+            min="1"
             id="shares"
             placeholder="Enter a number of shares"
             className="input input-bordered w-full"
