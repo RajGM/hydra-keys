@@ -42,6 +42,7 @@ const ThemeToggle = () => {
           width="14px"
           height="14px"
           className={`opacity-70 ${dark ? 'invisible' : ''}`}
+          alt="MoonToggle"
         />
         <Image
           src="/Moon.png"
@@ -49,6 +50,7 @@ const ThemeToggle = () => {
           width="14px"
           height="14px"
           className={!dark ? 'invisible' : ''}
+          alt="MoonToggle"
         />
       </div>
       <input
