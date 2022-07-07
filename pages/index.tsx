@@ -35,8 +35,9 @@ const Home: NextPage = () => {
       </Head>
 
       <HeroSection onHandleGetStarted={handleGetStarted} />
-      <HomeCarousel />
       <MidSection/>
+      <HomeCarousel />
+     
 
       <Footer/>
      
