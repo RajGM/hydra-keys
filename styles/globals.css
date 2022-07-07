@@ -29,12 +29,13 @@ h1 {
 
 .section2Size {
     height: 900px;
-    background-color: rgb(255, 255, 255);
+    background-color: whitesmoke
   }
   
   .modalSize {
     height: 500px;
     width: 340px;
+    background-color: white;
   }
   
   .modalText {
@@ -151,7 +152,6 @@ h1 {
 }
 
 [data-theme="dark"] #logoImg{
-    fill: yellow;
     @apply brightness-0 invert
 }
 
